@@ -140,17 +140,57 @@ void ALG3(){
     printf("\n");
     printf("\n");
     printf("\n");
-    
+    float matricula;
     char md = 'k';
+    int irmaos;
+    char pagamento;
+    float total = 200;
     
-    while(md != 's' && md != 'n' && md != 'S' && md != 'N'){
-        printf("precisa de material didatico ? (S=SIM N=NÃO): ");
-        scanf(" %c", & md);
+    strcpy(ask, "material didatico ?: ");
+    readChar();
+    md = rCHAR;
+
+    if(md == 's' || md == 'S'){
+        total = total + 50;
+
+    } else if(md == 'n' || md == 'N'){
+        total = total;
     }
+    
+    strcpy(ask, "quantidade de irmaos ?: ");
+    readInt();
+    irmaos = rINT;
+    
+    if(irmaos > 0){
+        if(irmaos == 1){
+            total = total - 30;
+        } else if(irmaos < 1 ){
+            total = total - (25 * irmaos);
+    }
+    
+    strcpy(ask, "pagamento antes do vencimento ?: ");
+    readChar();
+    pagamento = rCHAR;
+    
+    if(pagamento == 's' || pagamento == 'S'){
+        total = total - (total * 0.10);
+
+    } else if(pagamento == 'n' || pagamento == 'N'){
+        total = total;
+    }
+    
+    printf("total a pagar: R$");
+    printf("%.2f", total);
+    printf(" reais");
+    
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    
 }
 
 int main() {
-    start:
+    start: ;
     int alg = 0;
     
     printf("ALG: (1); (2); (3); ");
