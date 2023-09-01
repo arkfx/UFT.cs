@@ -166,6 +166,7 @@ void ALG3(){
             total = total - 30;
         } else if(irmaos < 1 ){
             total = total - (25 * irmaos);
+        }
     }
     
     strcpy(ask, "pagamento antes do vencimento ?: ");
@@ -190,16 +191,16 @@ void ALG3(){
 }
 
 int main() {
-    start: ;
-    int alg = 0;
-    
+    start:
+
     printf("ALG: (1); (2); (3); ");
+    int alg = 0;
     scanf("%d", & alg);
     if(alg != 1 && alg != 2 && alg != 3){
         goto end;
     } else if(alg == 1){
-        alg = 0;
         ALG1();
+        goto start;
     } else if(alg == 2){
         alg = 0;
         ALG2();
@@ -212,6 +213,7 @@ int main() {
 
     end:
     
+    printf("%f", alg);   
     printf("\n");
     printf("\n");
     printf("\n");
