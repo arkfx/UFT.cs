@@ -202,12 +202,11 @@ int main() {
         ALG1();
         goto start;
     } else if(alg == 2){
-        alg = 0;
         ALG2();
         goto start;
     } else if(alg == 3){
-        alg = 0;
         ALG3();
+        goto start;
     } else if(alg == 0){
         goto start;
     }
