@@ -85,13 +85,14 @@ int main () {
     if (faltaDeAr){
         tomografiaDoPulmao = true;
     }
-    if (temperatura <= 37.5 && >= 35){
+    if (temperatura <= 37.5 && temperatura >= 35){
         consultaClinicoGeral = true;
         printf("consulta com clinico geral");
     }
     if (desacordado || temperatura < 35){
         emergencia = true;
     }
+    
 
 
 
