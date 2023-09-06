@@ -55,7 +55,7 @@ int main() {
     scanf(" %s", &filiais[InpFilial-1].produtos[p].nome);
 
     printf("Quantidade: ");
-    scanf(" %f", &filiais[InpFilial-1].produtos[p].quantidade);
+    scanf(" %f", &filiais[InpFilial-1].produtos[p].quantidade); 
 
     printf("Tipo: ");
     scanf(" %c", &filiais[InpFilial-1].produtos[p].tipo);
