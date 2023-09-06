@@ -10,13 +10,11 @@ clear(){
 
 int valorEmEstoque = 0;
 
-typedef struct {
+void Filial1(){
     int mercearia;
     int limpeza;
     int pereciveis;
-} Filial;
-Filial filiais[34];
-
+}
 
 int main() {
     // Write C code here
@@ -27,9 +25,9 @@ int main() {
         clear();
     }
 
-    if (InpFilial >= 1 && InpFilial <= 34) {
-        filiais[InpFilial - 1].mercearia = 10;
+    if (InpFilial == 1) {
+        Filial1();
+    }
+        
 }
 
-  
-}
