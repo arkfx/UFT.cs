@@ -48,10 +48,12 @@ void clearOUT(){
     while((getchar()) != '\n');
 }
 
+/*
 void clear(){
     clearIN();
     clearOUT();
 }
+*/ 
 
 void ALG1(){
     printf("ALG1");
