@@ -40,7 +40,7 @@ void readChar(){
     if(rCHAR == 's' || rCHAR == 'S'){
         rBOOL = true;
     }
-    else if(rCHAR == 'n' || rCHAR == 'N'){
+    if(rCHAR == 'n' || rCHAR == 'N'){
         rBOOL = false;
     }
 }
@@ -58,18 +58,47 @@ void clearOUT(){
 
 
 int main () {
+    bool exameDeSangueEurina = false;
+    bool tomografiaDoPulmao = false;
+    bool consultaClinicoGeral = false;
+    bool emergencia = false;
+
+    printf("responda as perguntas com s ou n");
+    printf("\n");
+
     strcpy(ask, "temperatura ? ");
     readFloat();
     float temperatura = rFLOAT;
 
-    strcpy(ask, "falta de ar ? (s/n): ");
+    strcpy(ask, "falta de ar ? ");
     readChar();
     bool faltaDeAr = rBOOL;
 
-    printf("temperatura: %f", temperatura);
+    strcpy(ask, "desacordado ? ");
+    readChar();
+    bool desacordado = rBOOL;
+        
+    if (temperatura > 37.5){
+        exameDeSangueEurina = true;
+    }
+    if (faltaDeAr){
+        tomografiaDoPulmao = true;
+    }
+    if (temperatura <= 37.5 && >= 35){
+        consultaClinicoGeral = true;
+        printf("consulta com clinico geral");
+    }
+    if (desacordado || temperatura < 35){
+        emergencia = true;
+    }
+
+
+
+
+
     return 0;
 
 
-
-
+    
+    
 }
