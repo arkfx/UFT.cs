@@ -3,7 +3,7 @@
 #include <string.h>
 
 int valorEmEstoque = 0;
-float InpFilial;
+int InpFilial;
 float rFLOAT;
 
 clear(){ 
