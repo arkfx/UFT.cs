@@ -64,8 +64,7 @@ int main () {
     bool consultaClinicoGeral = false;
     bool emergencia = false;
 
-    printf("responda as perguntas com s ou n");
-    printf("\n");
+    printf("responda as perguntas não-numericas com s ou n");
 
     strcpy(ask, "temperatura ? ");
     readFloat();
@@ -87,12 +86,25 @@ int main () {
     }
     if (temperatura <= 37.5 && temperatura >= 35){
         consultaClinicoGeral = true;
-        printf("consulta com clinico geral");
     }
     if (desacordado || temperatura < 35){
         emergencia = true;
     }
     
+
+    if (exameDeSangueEurina){
+        printf("exame de sangue e urina\n");
+    }
+    if (tomografiaDoPulmao){
+        printf("tomografia do pulmao\n");
+    }
+    if (consultaClinicoGeral){
+        printf("consulta com clinico geral\n");
+    }
+    if (emergencia){
+        printf("emergencia\n");
+    }
+
 
 
 
