@@ -64,7 +64,7 @@ int main () {
     bool consultaClinicoGeral = false;
     bool emergencia = false;
 
-    printf("responda as perguntas não-numericas com s ou n");
+    printf("responda as perguntas não-numericas com s ou n\n");
 
     strcpy(ask, "temperatura ? ");
     readFloat();
