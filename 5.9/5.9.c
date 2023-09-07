@@ -16,7 +16,7 @@
 //nas linhas seguintes, depois de uma chamada das funções read, é feita uma verificação para ver se a entrada foi válida.
 //se não foi, o loop while faz com que uma nova solicitação de input do usuário seja feita, até que uma entrada válida seja feita.
 //apos uma entrada válida, a função read é finalizada, e o programa segue para a próxima linha, na função main.
-//apos o termino de uma função read, a variável em que queremos armazenar o valor da entrada é igualada as variáveis rINT, rFLOAT, rCHAR ou rBOOL.
+//apos o termino de uma função read, a variável em que queremos armazenar o valor da entrada é igualada as variáveis rINT, rFLOAT ou rBOOL.
 
 //a função clearIN limpa as variáveis rINT, rFLOAT, rCHAR e rBOOL, para que possam ser usadas novamente.
 //a função clearOUT limpa o buffer de entrada, para que o programa ignore entradas inválidas, como o \n deixado pelo scanf apos um enter.
