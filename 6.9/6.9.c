@@ -2,34 +2,66 @@
 #include <stdio.h>
 #include <string.h>
 
-int InpFilial;
+int valorEmEstoque = 0;
+float InpFilial;
+float rFLOAT;
 
 clear(){ 
     while((getchar()) != '\n');
 }
 
-int valorEmEstoque = 0;
+void readFloat(){
+    rFLOAT = 0;
+    while (rFLOAT == 0){
+        printf("%s", ask);
+        scanf(" %f", & rFLOAT);
+        if(rFLOAT == 0){
+            clear();
+        }
+    }
+}
 
 typedef struct {
-    int mercearia;
-    int limpeza;
-    int pereciveis;
+    typedef struct {
+        float preço;
+        char nome[100];
+        float quantidade;
+        char tipo; 
+    } Produto;
+    Produto produtos[1000];
 } Filial;
-Filial filiais[34];
+Filial filiais[33];
 
 
 int main() {
     // Write C code here
 
-    while(InpFilial > 34 || InpFilial < 1){
-        printf("Filial (1-34): ");
-        scanf(" %d", & InpFilial);
-        clear();
+    while(InpFilial > 34 && InpFilial < 1){
+        strcpy(ask, "Filial (1-34): ");
+        readFloat();
+        InpFilial = rFLOAT;
     }
+    printf("----Filial %d--",InpFilial,"----");
+    printf("\n");
 
-    if (InpFilial >= 1 && InpFilial <= 34) {
-        filiais[InpFilial - 1].mercearia = 10;
+    int p;
+    printf("Produto: ");
+    scanf(" %d", &p);
+
+    printf("Preço: ");
+    scanf(" %f", &filiais[InpFilial-1].produtos[p].preço);
+
+    printf("Nome: ");
+    scanf(" %s", &filiais[InpFilial-1].produtos[p].nome);
+
+    printf("Quantidade: ");
+    scanf(" %f", &filiais[InpFilial-1].produtos[p].quantidade); 
+
+    printf("Tipo: ");
+    scanf(" %c", &filiais[InpFilial-1].produtos[p].tipo);
+
+
+
 }
 
   
-}
