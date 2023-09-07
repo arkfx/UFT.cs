@@ -2,6 +2,27 @@
 #include <string.h>
 #include <stdbool.h>
 
+//as funções readInt, readFloat, readChar, clearIN e clearOUT foram feitas para facilitar a leitura e entrada de dados do usuário.
+//impedindo que o programa receba entradas inválidas.
+//como letras em uma entrada de int, ou números em uma entrada de char, por exemplo.
+
+//a função readInt lê um inteiro e armazena em rINT.
+//a função readFloat lê um float e armazena em rFLOAT.
+//a função readChar lê um char e armazena em rCHAR, e converte rCHAR para bool, armazenando em rBOOL.
+//essa conversão de char para bool é feita para que o usuário possa responder as perguntas com s ou n, ao invés de 1 ou 0.
+//e também para evitar uma dupla verificação de entrada, uma para o char maiúsculo e outra para o minúsculo. 
+
+//o strcpy copia uma string de uma pergunta para a variável ask, que é usada nas funções read, para printar a pergunta ao usuário.
+//nas linhas seguintes, depois de uma chamada das funções read, é feita uma verificação para ver se a entrada foi válida.
+//se não foi, o loop while faz com que uma nova solicitação de input do usuário seja feita, até que uma entrada válida seja feita.
+//apos uma entrada válida, a função read é finalizada, e o programa segue para a próxima linha, na função main.
+//apos o termino de uma função read, a variável em que queremos armazenar o valor da entrada é igualada as variáveis rINT, rFLOAT, rCHAR ou rBOOL.
+
+//a função clearIN limpa as variáveis rINT, rFLOAT, rCHAR e rBOOL, para que possam ser usadas novamente.
+//a função clearOUT limpa o buffer de entrada, para que o programa ignore entradas inválidas, como o \n deixado pelo scanf apos um enter.
+
+
+
 char ask[50];
 
 int rINT = 0;
@@ -91,6 +112,7 @@ int main () {
         emergencia = true;
     }
     
+    printf("o paciente precisa ser encaminhado para: \n"); 
 
     if (exameDeSangueEurina){
         printf("exame de sangue e urina\n");
@@ -105,14 +127,5 @@ int main () {
         printf("emergencia\n");
     }
 
-
-
-
-
-
     return 0;
-
-
-    
-    
 }
