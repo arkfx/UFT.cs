@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 
+char ask[50];
+
 int valorEmEstoque = 0;
-int InpFilial;
-float rFLOAT;
+int InpFilial = 0;
+float rFLOAT = 0;
 
 clear(){ 
     while((getchar()) != '\n');
@@ -22,15 +24,17 @@ void readFloat(){
 }
 
 typedef struct {
-    typedef struct {
-        float preço;
-        char nome[100];
-        float quantidade;
-        char tipo; 
-    } Produto;
+    float preço;
+    char nome[100];
+    float quantidade;
+    char tipo; 
+} Produto;
+
+typedef struct {
     Produto produtos[1000];
 } Filial;
-Filial filiais[33];
+Filial filiais[34];
+
 
 
 int main() {
@@ -44,21 +48,7 @@ int main() {
     printf("----Filial %d--",InpFilial,"----");
     printf("\n");
 
-    int p;
-    printf("Produto: ");
-    scanf(" %d", &p);
-
-    printf("Preço: ");
-    scanf(" %f", &filiais[InpFilial-1].produtos[p].preço);
-
-    printf("Nome: ");
-    scanf(" %s", &filiais[InpFilial-1].produtos[p].nome);
-
-    printf("Quantidade: ");
-    scanf(" %f", &filiais[InpFilial-1].produtos[p].quantidade); 
-
-    printf("Tipo: ");
-    scanf(" %c", &filiais[InpFilial-1].produtos[p].tipo);
+    i
 
 
 
