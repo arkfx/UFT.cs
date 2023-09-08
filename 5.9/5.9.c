@@ -112,6 +112,8 @@ int main () {
         emergencia = true;
     }
     
+<<<<<<< HEAD
+=======
     printf("o paciente precisa ser encaminhado para: \n"); 
 
     if (exameDeSangueEurina){
@@ -127,5 +129,6 @@ int main () {
         printf("emergencia\n");
     }
 
+>>>>>>> 27e52c1f32515ac966f655e13e5dd1a1c5d519fb
     return 0;
 }
