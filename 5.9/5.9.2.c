@@ -28,7 +28,7 @@ typedef struct{
     float indicePluviometrico;
     float temperaturaMedia;
 } mes;
-mes meses[12];
+mes meses[13];
 
 int main () {
     strcpy(meses[1].nomeDoMes, "Janeiro");
@@ -45,20 +45,36 @@ int main () {
     strcpy(meses[12].nomeDoMes, "Dezembro");
 
 
-    for (int i = 1; i >= 12; i++){
-        printf("para o mes: %c", meses[i].nomeDoMes);
+    for (int i = 1; i <= 12; i++){
+        printf("\n");
+
+        printf("para o mes: ");
+        printf("%s", meses[i].nomeDoMes);
 
         printf("\n");
         strcpy(ask, "temperatura media: ");
         readFloat();
         meses[i].temperaturaMedia = rFLOAT;
 
-        printf("\n");
         strcpy(ask, "Indice pluviometrico do mes: ");
         readFloat();
         meses[i].indicePluviometrico = rFLOAT;
     }
+    printf("\n");
     
+    float somaIndice = 0;
+    float somaTemperatura = 0;
+    for (int i = 1; i <= 12; i++) {
+        somaIndice += meses[i].indicePluviometrico;
+        somaTemperatura += meses[i].temperaturaMedia;
+    }
+    float mediaIndice = somaIndice / 12;
+    float mediaTemperatura = somaTemperatura / 12;
+    printf("\n");
+    printf("Média do índice pluviométrico: %f", mediaIndice);
+    printf("\n");
+    printf("Média anual da temperatura média mensal: %f", mediaTemperatura);
+    printf("\n");
 
     return 0;
 }
