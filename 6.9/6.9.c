@@ -4,21 +4,37 @@
 
 char ask[50];
 
-int valorEmEstoque = 0;
-int InpFilial = 0;
 float rFLOAT = 0;
+char answer[50];
 
-clear(){ 
+int InpFilial = 0;
+
+void clearIN(){
+    rFLOAT = 0;
+    strcpy(answer, "");
+}
+void clearOUT(){
     while((getchar()) != '\n');
 }
 
 void readFloat(){
-    rFLOAT = 0;
+    clearIN();
     while (rFLOAT == 0){
         printf("%s", ask);
         scanf(" %f", & rFLOAT);
         if(rFLOAT == 0){
-            clear();
+            clearOUT();
+        }
+    }
+}
+
+void readString(){
+    clearIN();
+    while (strlen(answer) == 0){
+        printf("%s", ask);
+        scanf(" %s", answer);
+        if(strlen(answer) == 0){
+            clearOUT();
         }
     }
 }
@@ -32,6 +48,7 @@ typedef struct {
 
 typedef struct {
     Produto produtos[1000];
+    int valorEmEstoque;
 } Filial;
 Filial filiais[34];
 
@@ -45,10 +62,17 @@ int main() {
         readFloat();
         InpFilial = rFLOAT;
     }
-    printf("----Filial %d--",InpFilial,"----");
+    int intF = InpFilial;
+    printf("----Filial:");
+    printf("%d", intF);
     printf("\n");
 
-    i
+    strcpy(ask, "Nome do produto: ");
+    readString();
+    strcpy(filiais[intF].produtos[0].nome, answer); 
+
+
+    
 
 
 
