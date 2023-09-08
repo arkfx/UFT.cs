@@ -1,6 +1,7 @@
 // Online C compiler to run C program online
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 char ask[50];
 
@@ -19,10 +20,10 @@ void clearOUT(){
 
 void readFloat(){
     clearIN();
-    while (rFLOAT == 0){
+    while (rFLOAT <= 0){
         printf("%s", ask);
         scanf(" %f", & rFLOAT);
-        if(rFLOAT == 0){
+        if(rFLOAT <= 0){
             clearOUT();
         }
     }
@@ -66,6 +67,16 @@ int main() {
     printf("----Filial:");
     printf("%d", intF);
     printf("\n");
+
+    int ReadProd = 0;
+    bool ProdRead = true;
+    while(ProdRead){
+        strcpy(ask, "nome do produto: ");
+        readString();
+        strcpy(filiais[intF].produtos[ReadProd].nome, answer);
+        strcpy(ask, "preço do produto: ");
+
+
 
     strcpy(ask, "Nome do produto: ");
     readString();
