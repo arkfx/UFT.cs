@@ -1,12 +1,12 @@
-// Online C compiler to run C program online
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
 
-char ask[50];
+char ask[100];
 
 float rFLOAT = 0;
-char answer[50];
+char answer[100];
+char rTipo;
 
 int InpFilial = 0;
 
@@ -40,10 +40,21 @@ void readString(){
     }
 }
 
+void readTipo(){
+    clearIN();
+    while (rTipo != 'm' && rTipo != '' && rTipo != 'C'){
+        printf("%s", ask);
+        scanf(" %c", & rTipo);
+        if(rTipo != 'A' && rTipo != 'B' && rTipo != 'C'){
+            clearOUT();
+        }
+    }
+}
+
 typedef struct {
-    float preço;
     char nome[100];
-    float quantidade;
+    float preço;
+    int quantidade;
     char tipo; 
 } Produto;
 
@@ -56,37 +67,32 @@ Filial filiais[34];
 
 
 int main() {
-    // Write C code here
-
-    while(InpFilial > 34 && InpFilial < 1){
+    while(InpFilial > 34 || InpFilial < 1){
         strcpy(ask, "Filial (1-34): ");
         readFloat();
         InpFilial = rFLOAT;
     }
-    int intF = InpFilial;
+
     printf("----Filial:");
-    printf("%d", intF);
+    printf("%d", InpFilial);
     printf("\n");
 
-    int ReadProd = 0;
+    int ReadProd = 1;
     bool ProdRead = true;
     while(ProdRead){
         strcpy(ask, "nome do produto: ");
         readString();
-        strcpy(filiais[intF].produtos[ReadProd].nome, answer);
+        strcpy(filiais[InpFilial].produtos[ReadProd].nome, answer);
         strcpy(ask, "preço do produto: ");
+        readFloat();
+        filiais[InpFilial].produtos[ReadProd].preço = rFLOAT;
+        strcpy(ask, "quantidade do produto: ");
+        readFloat();
+        filiais[InpFilial].produtos[ReadProd].quantidade = rFLOAT;
+        strcpy(ask, "tipo do produto: ");
 
 
 
-    strcpy(ask, "Nome do produto: ");
-    readString();
-    strcpy(filiais[intF].produtos[0].nome, answer); 
-
-
-    
-
-
+    }
 
 }
-
-  
