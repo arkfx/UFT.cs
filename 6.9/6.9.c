@@ -5,13 +5,14 @@
 char ask[100];
 
 float rFLOAT = 0;
-char answer[100];
-char rTipo[100];
+char rSTRING[100];
+char rCHAR;
+char rTIPO[100];
 
 void clearIN(){
     rFLOAT = 0;
-    strcpy(answer, "");
-    strcpy(rTipo, "");
+    strcpy(rSTRING, "");
+    strcpy(rTIPO, "");
 }
 void clearOUT(){
     while((getchar()) != '\n');
@@ -30,21 +31,23 @@ void readFloat(){
 
 void readString(){
     clearIN();
-    while (strlen(answer) == 0){
+    while (strlen(rSTRING) == 0){
         printf("%s", ask);
-        scanf(" %s", answer);
-        if(strlen(answer) == 0){
+        scanf(" %s", & rSTRING);
+        if(strlen(rSTRING) == 0){
             clearOUT();
         }
     }
 }
 
+
+
 void readTipo(){
     clearIN();
-    while (rTipo != 'm' && rTipo != 'l' && rTipo != 'p' && rTipo != 'M' && rTipo != 'L' && rTipo != 'P'){
+    while (rTIPO != 'm' && rTIPO != 'l' && rTIPO != 'p' && rTIPO != 'M' && rTIPO != 'L' && rTIPO != 'P'){
         printf("%s", ask);
-        scanf(" %c", & rTipo);
-        if(rTipo != 'm' && rTipo != 'l' && rTipo != 'p' && rTipo != 'M' && rTipo != 'L' && rTipo != 'P'){
+        scanf(" %c", & rTIPO);
+        if(rTIPO != 'm' && rTIPO != 'l' && rTIPO != 'p' && rTIPO != 'M' && rTIPO != 'L' && rTIPO != 'P'){
             clearOUT();
         }
     }
@@ -80,14 +83,15 @@ int main() {
     printf("\n");
 
     printf("deseja adicionar ou modificar um produto? (a/m): ");
+
     int ReadProd = 1; 
-    bool ProdRead = true
+    bool ProdRead = true;
 
     while(ProdRead){
 
         strcpy(ask, "nome do produto: ");
         readString();
-        strcpy(filiais[InpFilial].produtos[ReadProd].nome, answer);
+        strcpy(filiais[InpFilial].produtos[ReadProd].nome, rSTRING);
 
         strcpy(ask, "preço do produto: ");
         readFloat();
@@ -99,7 +103,7 @@ int main() {
 
         strcpy(ask, "tipo do produto: ");
         readTipo();
-        filiais[InpFilial].produtos[ReadProd].tipo = rTipo;
+        filiais[InpFilial].produtos[ReadProd].tipo = rTIPO;
 
 
 
