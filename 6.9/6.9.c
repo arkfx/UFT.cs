@@ -53,7 +53,7 @@ void readBool(){
     clearIN();
     while (rCHAR != 's' && rCHAR!= 'n' && rCHAR != 'S' && rCHAR != 'N'){
         printf("%s", ask);
-        scanf(" %c", & rCHAR);
+        scanf(" %s", & rCHAR);
         if(rCHAR != 's' && rCHAR != 'n' && rCHAR != 'S' && rCHAR != 'N'){
             clearOUT();
         }
@@ -70,7 +70,7 @@ void readTipo(){
     clearIN();
     while (rTIPO != 'm' && rTIPO != 'l' && rTIPO != 'p' && rTIPO != 'M' && rTIPO != 'L' && rTIPO != 'P'){
         printf("%s", ask);
-        scanf(" %c", & rTIPO);
+        scanf(" %s", & rTIPO);
         if(rTIPO != 'm' && rTIPO != 'l' && rTIPO != 'p' && rTIPO != 'M' && rTIPO != 'L' && rTIPO != 'P'){
             clearOUT();
         }
@@ -79,7 +79,7 @@ void readTipo(){
 
 typedef struct {
     char nome[100];
-    float preço;
+    float preco;
     int quantidade;
     char tipo; 
 } Produto;
@@ -97,11 +97,10 @@ int main() {
     printf("----Bem vindo ao sistema de estoque----");
     start:
     printf("\n");
-    printf("O que deseja fazer?");
-    printf("\n");
     
     while(action > 4 || action < 1){
         strcpy(ask, "1 - Adicionar produtos\n2 - Editar produtos\n3 - Remover produtos\n4 - Listar produtos\n");
+        printf("O que deseja fazer?: ");
         readFloat();
         action = rFLOAT;
     }
@@ -147,8 +146,8 @@ void AddProduto(int filial){
     printf("%d", filial);
     printf("----");
     printf("\n");
-    AddProduto:
     int ReadProd;
+    AddProduto:
     for(int i = 1; i <= 1000; i++){
         if(filiais[filial].produtos[i].nome[0] == '\0'){
             ReadProd = i;
@@ -162,7 +161,7 @@ void AddProduto(int filial){
 
     strcpy(ask, "preço do produto: ");
     readFloat();
-    filiais[filial].produtos[ReadProd].preço = rFLOAT;
+    filiais[filial].produtos[ReadProd].preco = rFLOAT;
 
     strcpy(ask, "quantidade do produto: ");
     readFloat();
@@ -191,7 +190,7 @@ void EditProduto(int filial){
 
     strcpy(ask, "preço do produto: ");
     readFloat();
-    filiais[filial].produtos[ReadProd].preço = rFLOAT;
+    filiais[filial].produtos[ReadProd].preco = rFLOAT;
 
     strcpy(ask, "quantidade do produto: ");
     readFloat();
@@ -215,7 +214,7 @@ void RemoverProduto(int filial){
     int ReadProd = rFLOAT;
 
     strcpy(filiais[filial].produtos[ReadProd].nome, "");
-    filiais[filial].produtos[ReadProd].preço = 0;
+    filiais[filial].produtos[ReadProd].preco = 0;
     filiais[filial].produtos[ReadProd].quantidade = 0;
     strcpy(filiais[filial].produtos[ReadProd].tipo, "");
 
@@ -239,8 +238,8 @@ void printFilial(int filial){
             printf(" - ");
             printf("%s", filiais[filial].produtos[i].nome);
             printf(" - preço: ");
-            printf("%f", filiais[filial].produtos[i].preço);
-            valorTotal += filiais[filial].produtos[i].preço;
+            printf("%f", filiais[filial].produtos[i].preco);
+            valorTotal += filiais[filial].produtos[i].preco;
             printf(" - quantidade: ");
             printf("%d", filiais[filial].produtos[i].quantidade);
             printf(" - tipo: ");
