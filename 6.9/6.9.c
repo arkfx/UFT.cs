@@ -186,9 +186,12 @@ void AddProduto(int filial){
 
 void EditProduto(int filial){
     printFilial(filial);
-    printf("selecione pelo numero o produto da lista que deseja editar: ");
+    printf("\n");
+
+    strcpy(ask, "Selecione pelo numero o produto da lista que deseja editar: ");
     readFloat();
     int ReadProd = rFLOAT;
+    printf("\n");
 
     strcpy(ask, "nome do produto: ");
     readString();
@@ -202,10 +205,11 @@ void EditProduto(int filial){
     readFloat();
     filiais[filial].produtos[ReadProd].quantidade = rFLOAT;
 
-    strcpy(ask, "tipo do produto: (m para merceria, l para limpeza, p para pereciveis)");
+    strcpy(ask, "tipo do produto: (m para merceria, l para limpeza, p para pereciveis): ");
     readTipo();
     filiais[filial].produtos[ReadProd].tipo = rTIPO;
 
+    printf("\n");
     strcpy(ask, "deseja editar mais um produto dessa filial ? (s/n): ");
     readBool();
     if(rBOOL == true){
@@ -215,7 +219,7 @@ void EditProduto(int filial){
 
 void RemoverProduto(int filial){
     printFilial(filial);
-    printf("selecione pelo numero o produto da lista que deseja remover: ");
+    strcpy(ask, "selecione pelo numero o produto da lista que deseja remover: ");
     readFloat();
     int ReadProd = rFLOAT;
 
@@ -257,8 +261,8 @@ void printFilial(int filial){
             printf("\n");
         }
     }
-    printf("valor total em estoque R$: ");
-    printf("%f", valorTotal);
+    printf("Valor total R$: ");
+    printf("%f.2", valorTotal);
     printf("\n");
 }
 
