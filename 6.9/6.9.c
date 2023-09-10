@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-char ask[100];
+char ask[1000];
 
 
 float rFLOAT = 0;
@@ -10,18 +10,18 @@ float rFLOAT = 0;
 char rSTRING[100];
 
 bool rBOOL = false;
-char rCHAR[100];
+char rCHAR;
 
-char rTIPO[100];
+char rTIPO;
 
 
 
 void clearIN(){
     rFLOAT = 0;
     strcpy(rSTRING, "");
-    strcpy(rCHAR, "");
+    rCHAR = '\0';
     rBOOL = false;
-    strcpy(rTIPO, "");
+    rTIPO = '\0';
 }
 void clearOUT(){
     while((getchar()) != '\n');
@@ -53,7 +53,7 @@ void readBool(){
     clearIN();
     while (rCHAR != 's' && rCHAR!= 'n' && rCHAR != 'S' && rCHAR != 'N'){
         printf("%s", ask);
-        scanf(" %s", & rCHAR);
+        scanf(" %c", & rCHAR);
         if(rCHAR != 's' && rCHAR != 'n' && rCHAR != 'S' && rCHAR != 'N'){
             clearOUT();
         }
@@ -70,7 +70,7 @@ void readTipo(){
     clearIN();
     while (rTIPO != 'm' && rTIPO != 'l' && rTIPO != 'p' && rTIPO != 'M' && rTIPO != 'L' && rTIPO != 'P'){
         printf("%s", ask);
-        scanf(" %s", & rTIPO);
+        scanf(" %c", & rTIPO);
         if(rTIPO != 'm' && rTIPO != 'l' && rTIPO != 'p' && rTIPO != 'M' && rTIPO != 'L' && rTIPO != 'P'){
             clearOUT();
         }
@@ -93,19 +93,18 @@ Filial filiais[34];
 
 
 int main() {
-    int action;
-    printf("----Bem vindo ao sistema de estoque----");
     start:
+    printf("----Bem vindo ao sistema de estoque----");
     printf("\n");
+    int action = 0;
     
     while(action > 4 || action < 1){
-        strcpy(ask, "1 - Adicionar produtos\n2 - Editar produtos\n3 - Remover produtos\n4 - Listar produtos\n");
-        printf("O que deseja fazer?: ");
+        strcpy(ask, "1 - Adicionar produtos\n2 - Editar produtos\n3 - Remover produtos\n4 - Listar produtos\nO que deseja fazer? (1-4): ");
         readFloat();
         action = rFLOAT;
     }
     if(action == 4){
-        strcpy(ask, "deseja listar os produtos de todas as filiais? (s/n)");
+        strcpy(ask, "deseja listar os produtos de todas as filiais? (s/n): ");
         readBool();
         if(rBOOL == true){
             printAll();
@@ -113,8 +112,9 @@ int main() {
         }
     }
 
-    int InpFilial;
+    int InpFilial = 0;
     while(InpFilial > 34 || InpFilial < 1){
+        printf("\n");
         strcpy(ask, "selecione a filial (1-34): ");
         readFloat();
         InpFilial = rFLOAT;
@@ -122,18 +122,22 @@ int main() {
     
     if(action == 1){
         AddProduto(InpFilial);
+        printf("\n");
         goto start;
     }
     if(action == 2){
         EditProduto(InpFilial);
+        printf("\n");
         goto start;
     }
     if(action == 3){
         RemoverProduto(InpFilial);
+        printf("\n");
         goto start;
     }
     if(action == 4){
         printFilial(InpFilial);
+        printf("\n");
         goto start;
     }
 
@@ -142,12 +146,14 @@ int main() {
 }
 
 void AddProduto(int filial){
-    printf("----Filial:");
+    printf("\n");
+    printf("----Filial: ");
     printf("%d", filial);
     printf("----");
     printf("\n");
     int ReadProd;
     AddProduto:
+    printf("\n");
     for(int i = 1; i <= 1000; i++){
         if(filiais[filial].produtos[i].nome[0] == '\0'){
             ReadProd = i;
@@ -167,11 +173,11 @@ void AddProduto(int filial){
     readFloat();
     filiais[filial].produtos[ReadProd].quantidade = rFLOAT;
 
-    strcpy(ask, "tipo do produto: (m para merceria, l para limpeza, p para pereciveis)");
+    strcpy(ask, "tipo do produto: (m para merceria, l para limpeza, p para pereciveis): ");
     readTipo();
     filiais[filial].produtos[ReadProd].tipo = rTIPO;
 
-    strcpy(ask, "deseja adicionar mais um produto nessa filial ? (s/n)");
+    strcpy(ask, "deseja adicionar mais um produto nessa filial ? (s/n): ");
     readBool();
     if(rBOOL == true){
         goto AddProduto;
@@ -200,7 +206,7 @@ void EditProduto(int filial){
     readTipo();
     filiais[filial].produtos[ReadProd].tipo = rTIPO;
 
-    strcpy(ask, "deseja editar mais um produto dessa filial ? (s/n)");
+    strcpy(ask, "deseja editar mais um produto dessa filial ? (s/n): ");
     readBool();
     if(rBOOL == true){
         EditProduto(filial);
@@ -218,7 +224,7 @@ void RemoverProduto(int filial){
     filiais[filial].produtos[ReadProd].quantidade = 0;
     strcpy(filiais[filial].produtos[ReadProd].tipo, "");
 
-    strcpy(ask, "deseja remover mais um produto dessa filial ? (s/n)");
+    strcpy(ask, "deseja remover mais um produto dessa filial ? (s/n): ");
     readBool();
     if(rBOOL == true){
         RemoverProduto(filial);
@@ -227,29 +233,33 @@ void RemoverProduto(int filial){
 
 
 void printFilial(int filial){
+    printf("\n");
     printf("----Filial: ");
     printf("%d", filial);
     printf("----");
     printf("\n");
-    int valorTotal;
+    float valorTotal = 0;
     for(int i = 1; i <= 1000; i++){
         if(filiais[filial].produtos[i].nome[0] != '\0'){
             printf("%d", i);
-            printf(" - ");
+            printf(" - nome: ");
             printf("%s", filiais[filial].produtos[i].nome);
-            printf(" - preço: ");
+
+            printf("  - preço: ");
             printf("%f", filiais[filial].produtos[i].preco);
-            valorTotal += filiais[filial].produtos[i].preco;
-            printf(" - quantidade: ");
+
+            printf("  - quantidade: ");
             printf("%d", filiais[filial].produtos[i].quantidade);
-            printf(" - tipo: ");
+            valorTotal += filiais[filial].produtos[i].preco * filiais[filial].produtos[i].quantidade;
+
+            printf("  - tipo: ");
             printf("%c", filiais[filial].produtos[i].tipo);
             printf("\n");
         }
-        printf("valor total em estoque R$: ");
-        printf("%d", valorTotal);
     }
-    
+    printf("valor total em estoque R$: ");
+    printf("%f", valorTotal);
+    printf("\n");
 }
 
 void printAll(){
