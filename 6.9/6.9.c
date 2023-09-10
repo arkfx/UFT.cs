@@ -4,11 +4,17 @@
 
 char ask[100];
 
+
 float rFLOAT = 0;
+
 char rSTRING[100];
-char rCHAR[100];
+
 bool rBOOL = false;
+char rCHAR[100];
+
 char rTIPO[100];
+
+
 
 void clearIN(){
     rFLOAT = 0;
@@ -91,11 +97,18 @@ int main() {
     printf("----Bem vindo ao sistema de estoque----");
     printf("\n");
 
+    printf("O que deseja fazer?");
+    printf("\n");
+    printf("1 - Adicionar produto");
+    printf("3 - Editar ou remover um produto");
+    printf("4 - Listar produtos");
+    printf("5 - Listar produtos por filial");
+
 
 
     int InpFilial;
     while(InpFilial > 34 || InpFilial < 1){
-        strcpy(ask, "Filial (1-34): ");
+        strcpy(ask, "selecione a filial (1-34): ");
         readFloat();
         InpFilial = rFLOAT;
     }
