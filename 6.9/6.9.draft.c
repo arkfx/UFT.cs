@@ -3,7 +3,14 @@
 
 int main() {
     // Write C code here
-    printf("Hello world");
-
+    for(int i = 1; i <= 1000; i++){
+    printf("%d", i);
+    printf("\n");
+        if(i >= 10){
+            break;
+        }
+    }
+    
+    printf("fim");
     return 0;
 }

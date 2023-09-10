@@ -43,7 +43,7 @@ void readString(){
     }
 }
 
-void readChar(){
+void readBool(){
     clearIN();
     while (rCHAR != 's' && rCHAR!= 'n' && rCHAR != 'S' && rCHAR != 'N'){
         printf("%s", ask);
@@ -88,6 +88,11 @@ Filial filiais[34];
 
 int main() {
 
+    printf("----Bem vindo ao sistema de estoque----");
+    printf("\n");
+
+
+
     int InpFilial;
     while(InpFilial > 34 || InpFilial < 1){
         strcpy(ask, "Filial (1-34): ");
@@ -100,31 +105,65 @@ int main() {
     printf("----");
     printf("\n");
 
-    int ReadProd = 1; 
-    bool ProdRead = true;
 
-    while(ProdRead){
+    return 0;
+}
 
-        strcpy(ask, "nome do produto: ");
-        readString();
-        strcpy(filiais[InpFilial].produtos[ReadProd].nome, rSTRING);
+void AddProduto(int filial){
+    int ReadProd;
+    for(int i = 1; i <= 1000; i++){
+        if(filiais[filial].produtos[i].nome == NULL){
+            ReadProd = i;
+            break;
+        }
+    } 
 
-        strcpy(ask, "preço do produto: ");
-        readFloat();
-        filiais[InpFilial].produtos[ReadProd].preço = rFLOAT;
+    strcpy(ask, "nome do produto: ");
+    readString();
+    strcpy(filiais[filial].produtos[ReadProd].nome, rSTRING);
 
-        strcpy(ask, "quantidade do produto: ");
-        readFloat();
-        filiais[InpFilial].produtos[ReadProd].quantidade = rFLOAT;
+    strcpy(ask, "preço do produto: ");
+    readFloat();
+    filiais[filial].produtos[ReadProd].preço = rFLOAT;
 
-        strcpy(ask, "tipo do produto: (m para merceria, l para limpeza, p para pereciveis)");
-        readTipo();
-        filiais[InpFilial].produtos[ReadProd].tipo = rTIPO;
+    strcpy(ask, "quantidade do produto: ");
+    readFloat();
+    filiais[filial].produtos[ReadProd].quantidade = rFLOAT;
 
-        strcpy(ask, "deseja adicionar mais um produto? (s/n)");
-        readChar();
+    strcpy(ask, "tipo do produto: (m para merceria, l para limpeza, p para pereciveis)");
+    readTipo();
+    filiais[filial].produtos[ReadProd].tipo = rTIPO;
 
-
+    strcpy(ask, "deseja adicionar mais um produto? (s/n)");
+    readBool();
+    if(rBOOL == true){
+        AddProduto(filial);
     }
+}
 
+void printFilial(int filial){
+    printf("----Filial: ");
+    printf("%d", filial);
+    printf("----");
+    printf("\n");
+    for(int i = 1; i <= 1000; i++){
+        if(filiais[filial].produtos[i].nome != NULL){
+            printf("%d", i);
+            printf(" - ");
+            printf("%s", filiais[filial].produtos[i].nome);
+            printf(" - preço: ");
+            printf("%f", filiais[filial].produtos[i].preço);
+            printf(" - quantidade: ");
+            printf("%d", filiais[filial].produtos[i].quantidade);
+            printf(" - tipo: ");
+            printf("%c", filiais[filial].produtos[i].tipo);
+            printf("\n");
+        }
+    }
+}
+
+void printAll(){
+    for(int i = 1; i <= 34; i++){
+        printFilial(i);
+    }
 }
