@@ -88,7 +88,7 @@ typedef struct {
     Produto produtos[1000];
     int valorEmEstoque;
 } Filial;
-Filial filiais[34];
+Filial filiais[35];
 
 
 
@@ -114,7 +114,6 @@ int main() {
 
     int InpFilial = 0;
     while(InpFilial > 34 || InpFilial < 1){
-        printf("\n");
         strcpy(ask, "selecione a filial (1-34): ");
         readFloat();
         InpFilial = rFLOAT;
@@ -226,7 +225,7 @@ void RemoverProduto(int filial){
     strcpy(filiais[filial].produtos[ReadProd].nome, "");
     filiais[filial].produtos[ReadProd].preco = 0;
     filiais[filial].produtos[ReadProd].quantidade = 0;
-    strcpy(filiais[filial].produtos[ReadProd].tipo, "");
+    filiais[filial].produtos[ReadProd].tipo = '\0';
 
     strcpy(ask, "deseja remover mais um produto dessa filial ? (s/n): ");
     readBool();
@@ -262,7 +261,7 @@ void printFilial(int filial){
         }
     }
     printf("Valor total R$: ");
-    printf("%f.2", valorTotal);
+    printf("%2.f", valorTotal);
     printf("\n");
 }
 
@@ -270,4 +269,5 @@ void printAll(){
     for(int i = 1; i <= 34; i++){
         printFilial(i);
     }
+    printf("\n");
 }
