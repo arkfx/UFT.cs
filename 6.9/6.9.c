@@ -112,8 +112,8 @@ typedef struct {
 } ProdutoMaisBarato;
 
 typedef struct {
-    Produto produtos[1000];
-    int valorEmEstoque;
+    Produto produtos[1001];
+    float valorEmEstoque;
     float porcentagemMerceria;
     float porcentagemLimpeza;
     float porcentagemPereciveis;
@@ -282,7 +282,7 @@ void printFilial(int filial){
     printf("%d", filial);
     printf("----");
     printf("\n");
-    float valorTotal = 0;
+    int j = 0;
     for(int i = 1; i <= 1000; i++){
         if(filiais[filial].produtos[i].nome[0] != '\0'){
             printf("%d", i);
@@ -294,15 +294,19 @@ void printFilial(int filial){
 
             printf("  - quantidade: ");
             printf("%d", filiais[filial].produtos[i].quantidade);
-            valorTotal += filiais[filial].produtos[i].preco * filiais[filial].produtos[i].quantidade;
+            filiais[filial].valorEmEstoque += filiais[filial].produtos[i].preco * filiais[filial].produtos[i].quantidade;
 
             printf("  - tipo: ");
             printf("%s", filiais[filial].produtos[i].tipo);
             printf("\n");
+            j++;
+        } else if (j == 0 && i == 1000){
+            printf("- Nenhum produto cadastrado nessa filial");
+            printf("\n");
         }
     }
     printf("Valor total R$: ");
-    printf("%4.f", valorTotal);
+    printf("%4.f", filiais[filial].valorEmEstoque);
     printf("\n");
 }
 
