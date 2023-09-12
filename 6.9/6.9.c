@@ -28,6 +28,8 @@ void clearIN(){
 
 void clearOUT(){
     while((getchar()) != '\n');
+    printf("entrada invalida, tente novamente.\n");
+    printf("\n");
 }
 
 void readFloat(){
@@ -112,7 +114,7 @@ typedef struct {
 } ProdutoMaisBarato;
 
 typedef struct {
-    Produto produtos[1001];
+    Produto produtos[100001];
     float valorEmEstoque;
     float porcentagemMerceria;
     float porcentagemLimpeza;
@@ -125,15 +127,18 @@ Filial filiais[35];
 
 
 int main() {
-    start:
     printf("----Bem vindo ao sistema de estoque----");
     printf("\n");
+    start:
+    printf("\n");
     int action = 0;
-    
     while(action > 4 || action < 1){
         strcpy(ask, "1 - Adicionar produtos\n2 - Editar produtos\n3 - Remover produtos\n4 - Listar produtos\nO que deseja fazer? (1-4): ");
         readFloat();
         action = rFLOAT;
+        if (action > 4 || action < 1){
+            clearOUT();
+        }
     }
     if(action == 3){
         strcpy(ask, "deseja remover todos os produtos de todas as filiais? (s/n): ");
@@ -166,11 +171,27 @@ int main() {
         goto start;
     }
     if(action == 2){
+        if(filiais[InpFilial].produtos[1].nome[0] == '\0'){
+            printf("----Nenhum produto cadastrado nessa filial----");
+            printf("\n");
+            goto start;
+        }
         EditProduto(InpFilial);
         printf("\n");
         goto start;
     }
     if(action == 3){
+        if(filiais[InpFilial].produtos[1].nome[0] == '\0'){
+            printf("----Nenhum produto cadastrado nessa filial----");
+            printf("\n");
+            goto start;
+        }
+        printf("deseja remover todos os produtos dessa filial? (s/n): ");
+        readBool();
+        if(rBOOL == true){
+            removeFilial(InpFilial);
+            goto start;
+        }
         RemoverProduto(InpFilial);
         printf("\n");
         goto start;
@@ -194,7 +215,7 @@ void AddProduto(int filial){
     int ReadProd;
     AddProduto:
     printf("\n");
-    for(int i = 1; i <= 1000; i++){
+    for(int i = 1; i <= 100000; i++){
         if(filiais[filial].produtos[i].nome[0] == '\0'){
             ReadProd = i;
             break;
@@ -212,6 +233,7 @@ void AddProduto(int filial){
     strcpy(ask, "quantidade do produto: ");
     readFloat();
     filiais[filial].produtos[ReadProd].quantidade = rFLOAT;
+    filiais[filial].valorEmEstoque += filiais[filial].produtos[ReadProd].preco * filiais[filial].produtos[ReadProd].quantidade;
 
     strcpy(ask, "tipo do produto: (M para merceria, L para limpeza, P para pereciveis): ");
     readTipo();
@@ -231,7 +253,14 @@ void EditProduto(int filial){
     strcpy(ask, "Selecione pelo numero o produto da lista que deseja editar: ");
     readFloat();
     int ReadProd = rFLOAT;
+    if (filiais[filial].produtos[ReadProd].nome[0] == '\0'){
+        printf("\n");
+        printf("----Produto não encontrado----");
+        printf("\n");
+        EditProduto(filial);
+    }
     printf("\n");
+    int valorAntigo = filiais[filial].produtos[ReadProd].preco * filiais[filial].produtos[ReadProd].quantidade;
 
     strcpy(ask, "nome do produto: ");
     readString();
@@ -244,6 +273,8 @@ void EditProduto(int filial){
     strcpy(ask, "quantidade do produto: ");
     readFloat();
     filiais[filial].produtos[ReadProd].quantidade = rFLOAT;
+    filiais[filial].valorEmEstoque -= valorAntigo;
+    filiais[filial].valorEmEstoque += filiais[filial].produtos[ReadProd].preco * filiais[filial].produtos[ReadProd].quantidade;
 
     strcpy(ask, "tipo do produto: (M para merceria, L para limpeza, P para pereciveis): ");
     readTipo();
@@ -262,11 +293,34 @@ void RemoverProduto(int filial){
     strcpy(ask, "selecione pelo numero o produto da lista que deseja remover: ");
     readFloat();
     int ReadProd = rFLOAT;
+    if (filiais[filial].produtos[ReadProd].nome[0] == '\0'){
+        printf("\n");
+        printf("----Produto não encontrado----");
+        printf("\n");
+        RemoverProduto(filial);
+    }
+    printf("\n");
+    filiais[filial].valorEmEstoque -= filiais[filial].produtos[ReadProd].preco * filiais[filial].produtos[ReadProd].quantidade;
 
     strcpy(filiais[filial].produtos[ReadProd].nome, "");
     filiais[filial].produtos[ReadProd].preco = 0;
     filiais[filial].produtos[ReadProd].quantidade = 0;
     strcpy(filiais[filial].produtos[ReadProd].tipo, "");
+    for(int i = 1; i <= 100000; i++){
+        if(filiais[filial].produtos[i].nome[0] == '\0'){
+            if(filiais[filial].produtos[i+1].nome[0] != '\0'){
+                strcpy(filiais[filial].produtos[i].nome, filiais[filial].produtos[i+1].nome);
+                filiais[filial].produtos[i].preco = filiais[filial].produtos[i+1].preco;
+                filiais[filial].produtos[i].quantidade = filiais[filial].produtos[i+1].quantidade;
+                strcpy(filiais[filial].produtos[i].tipo, filiais[filial].produtos[i+1].tipo);
+
+                strcpy(filiais[filial].produtos[i+1].nome, "");
+                filiais[filial].produtos[i+1].preco = 0;
+                filiais[filial].produtos[i+1].quantidade = 0;
+                strcpy(filiais[filial].produtos[i+1].tipo, "");
+            }
+        }
+    }
 
     strcpy(ask, "deseja remover mais um produto dessa filial ? (s/n): ");
     readBool();
@@ -282,31 +336,29 @@ void printFilial(int filial){
     printf("%d", filial);
     printf("----");
     printf("\n");
-    int j = 0;
-    for(int i = 1; i <= 1000; i++){
+    for(int i = 1; i <= 100000; i++){
         if(filiais[filial].produtos[i].nome[0] != '\0'){
             printf("%d", i);
             printf(" - nome: ");
             printf("%s", filiais[filial].produtos[i].nome);
 
             printf("  - preço: ");
-            printf("%.4f", filiais[filial].produtos[i].preco);
+            printf("%.2f", filiais[filial].produtos[i].preco);
 
             printf("  - quantidade: ");
             printf("%d", filiais[filial].produtos[i].quantidade);
-            filiais[filial].valorEmEstoque += filiais[filial].produtos[i].preco * filiais[filial].produtos[i].quantidade;
+            //filiais[filial].valorEmEstoque += filiais[filial].produtos[i].preco * filiais[filial].produtos[i].quantidade;
 
             printf("  - tipo: ");
             printf("%s", filiais[filial].produtos[i].tipo);
             printf("\n");
-            j++;
-        } else if (j == 0 && i == 1000){
+        } else if (i == 1){
             printf("- Nenhum produto cadastrado nessa filial");
             printf("\n");
         }
     }
     printf("Valor total R$: ");
-    printf("%4.f", filiais[filial].valorEmEstoque);
+    printf("%.2f", filiais[filial].valorEmEstoque);
     printf("\n");
 }
 
@@ -319,7 +371,8 @@ void printAll(){
 }
 
 void removeFilial(int filial){
-    for(int i = 1; i <= 1000; i++){
+    for(int i = 1; i <= 100000; i++){
+        filiais[filial].valorEmEstoque = 0;
         strcpy(filiais[filial].produtos[i].nome, "");
         filiais[filial].produtos[i].preco = 0;
         filiais[filial].produtos[i].quantidade = 0;
