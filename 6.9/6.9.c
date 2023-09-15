@@ -39,6 +39,9 @@ void readFloat(){
         scanf(" %f", & rFLOAT);
         if(rFLOAT <= 0){
             clearOUT();
+            if(rFLOAT == -1){
+                
+            }
         }
     }
 }
@@ -100,18 +103,9 @@ typedef struct {
 } Produto;
 
 typedef struct {
-    char nome[100];
-    float preco;
-    int quantidade;
-    char tipo[10];
-} ProdutoMaisCaro;
-
-typedef struct {
-    char nome[100];
-    float preco;
-    int quantidade;
-    char tipo[10];
-} ProdutoMaisBarato;
+    Produto ProdutoMaisCaro;
+    Produto ProdutoMaisBarato;
+} ProdutoMais;
 
 typedef struct {
     Produto produtos[100001];
@@ -119,8 +113,8 @@ typedef struct {
     float porcentagemMerceria;
     float porcentagemLimpeza;
     float porcentagemPereciveis;
-    ProdutoMaisCaro maisCaro;
-    ProdutoMaisBarato maisBarato;
+    ProdutoMais ProdutoMaisCaro;
+    ProdutoMais ProdutoMaisBarato;
 } Filial;
 Filial filiais[35];
 
@@ -129,6 +123,7 @@ Filial filiais[35];
 int main() {
     printf("----Bem vindo ao sistema de estoque----");
     printf("\n");
+    printf("digite -1 durante qualquer entrada numerica para voltar ao menu");
     start:
     printf("\n");
     int action = 0;
@@ -186,7 +181,7 @@ int main() {
             printf("\n");
             goto start;
         }
-        printf("deseja remover todos os produtos dessa filial? (s/n): ");
+        strcpy(ask, "deseja remover todos os produtos dessa filial? (s/n): ");
         readBool();
         if(rBOOL == true){
             removeFilial(InpFilial);
