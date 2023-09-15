@@ -14,6 +14,7 @@ int main() {
     int IdadeDaPessoaMaisVelha = 0;
 
     for(int i = 0; i < 50; i++){
+        printf("Digite a idade da pessoa %d: ", i + 1);
         scanf("%f", &pessoas[i].idade);
         somaDaIdade += pessoas[i].idade;
         if (pessoas[i].idade > IdadeDaPessoaMaisVelha){
