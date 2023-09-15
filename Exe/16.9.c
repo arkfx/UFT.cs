@@ -7,7 +7,7 @@ p pessoas[50];
 
 int main() {
     int somaDaIdade = 0;
-    float media;
+    float media = 0;
 
     int PessoasComIdadeMenorQueAMedia = 0;
     float PorcentagemComIdadeMenorQue18 = 0;
