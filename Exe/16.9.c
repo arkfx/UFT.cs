@@ -1,9 +1,11 @@
 #include <stdio.h>
 
+const int n = 10;
+
 typedef struct{
     float idade;
 } p;
-p pessoas[50];
+p pessoas[n];
 
 int main() {
     int somaDaIdade = 0;
@@ -13,7 +15,7 @@ int main() {
     float PorcentagemComIdadeMenorQue18 = 0;
     int IdadeDaPessoaMaisVelha = 0;
 
-    for(int i = 0; i < 50; i++){
+    for(int i = 0; i < n; i++){
         printf("Digite a idade da pessoa %d: ", i + 1);
         scanf("%f", &pessoas[i].idade);
         somaDaIdade += pessoas[i].idade;
@@ -24,9 +26,9 @@ int main() {
             PorcentagemComIdadeMenorQue18++;
         }
     }
-    media = somaDaIdade / 50;
-    PorcentagemComIdadeMenorQue18 = (PorcentagemComIdadeMenorQue18 / 50) * 100;
-    for(int i = 0; i < 50; i++){
+    media = somaDaIdade / n;
+    PorcentagemComIdadeMenorQue18 = (PorcentagemComIdadeMenorQue18 / n) * 100;
+    for(int i = 0; i < n; i++){
         if (pessoas[i].idade < media){
             PessoasComIdadeMenorQueAMedia++;
         }
