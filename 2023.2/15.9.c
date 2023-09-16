@@ -4,6 +4,43 @@
 #include <stdbool.h>
 
 
+char ask[1000];
+
+char rSTRING;
+float rFLOAT = 0;
+
+bool rBOOL = false;
+char rCHAr;
+
+
+void clearIN(){
+    strcpy(rSTRING, "");
+    rFLOAT = 0;
+    rBOOL = false;
+    rCHAr = '\0';
+}
+
+void clearOUT(){
+    while((getchar()) != '\n');
+    printf("entrada invalida, tente novamente.\n");
+    printf(">> ");
+    printf("\n");
+}
+
+void readFloat(){
+    clearIN();
+    while (rFLOAT <= 0){
+        printf("s", ask);
+        scanf(" %f", & rFLOAT);
+        if (rFLOAT <= 0){
+            clearOUT();
+            if (rFLOAT == -1){
+                return;
+
+            }
+        }
+    }
+}
 
 
 
