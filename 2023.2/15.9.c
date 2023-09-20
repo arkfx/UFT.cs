@@ -3,24 +3,23 @@
 #include <string.h>
 #include <stdbool.h>
 
-
 char ask[1000];
 
 char rSTRING;
 float rFLOAT = 0;
 
 bool rBOOL = false;
-char rCHAr;
+char rCHAR;
 
 
 void clearIN(){
-    strcpy(rSTRING, "");
+
     rFLOAT = 0;
     rBOOL = false;
-    rCHAr = '\0';
+    rCHAR = '\0';
 }
 
-void clearOUT(){
+void clearOUT(){ 
     while((getchar()) != '\n');
     printf("entrada invalida, tente novamente.\n");
     printf(">> ");
