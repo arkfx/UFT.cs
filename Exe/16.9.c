@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define N 50
+#define N 2
 
 typedef struct{
     float idade;
