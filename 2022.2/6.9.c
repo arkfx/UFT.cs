@@ -40,7 +40,7 @@ void readFloat(){
         if(rFLOAT <= 0){
             clearOUT();
             if(rFLOAT == -1){
-                
+                Menu();
             }
         }
     }
@@ -51,6 +51,9 @@ void readString(){
     while (strlen(rSTRING) == 0){
         printf("%s", ask);
         scanf(" %s", & rSTRING);
+        if(strcmp(rSTRING, "-1") == 0){
+            Menu();
+        }
         if(strlen(rSTRING) == 0){
             clearOUT();
         }
@@ -62,6 +65,9 @@ void readBool(){
     while (rCHAR != 's' && rCHAR!= 'n' && rCHAR != 'S' && rCHAR != 'N'){
         printf("%s", ask);
         scanf(" %c", & rCHAR);
+        if(rCHAR == '-'){
+            Menu();
+        }
         if(rCHAR != 's' && rCHAR != 'n' && rCHAR != 'S' && rCHAR != 'N'){
             clearOUT();
         }
@@ -79,6 +85,10 @@ void readTipo(){
     while (rTIPO != 'm' && rTIPO != 'l' && rTIPO != 'p' && rTIPO != 'M' && rTIPO != 'L' && rTIPO != 'P'){
         printf("%s", ask);
         scanf(" %c", & rTIPO);
+        printf("%c", rTIPO);
+        if(rTIPO == '-'){
+            Menu();
+        }
         if(rTIPO != 'm' && rTIPO != 'l' && rTIPO != 'p' && rTIPO != 'M' && rTIPO != 'L' && rTIPO != 'P'){
             clearOUT();
         }
@@ -118,12 +128,7 @@ typedef struct {
 } Filial;
 Filial filiais[35];
 
-
-
-int main() {
-    printf("----Bem vindo ao sistema de estoque----");
-    printf("\n");
-    printf("digite -1 durante qualquer entrada numerica para voltar ao menu");
+void Menu(){
     start:
     printf("\n");
     int action = 0;
@@ -197,6 +202,13 @@ int main() {
         goto start;
     }
 
+}
+
+int main() {
+    printf("----Bem vindo ao sistema de estoque----");
+    printf("\n");
+    printf("digite qualquer valor negativo para voltar ao menu\n");
+    Menu();
 
     return 0;
 }
@@ -342,7 +354,6 @@ void printFilial(int filial){
 
             printf("  - quantidade: ");
             printf("%d", filiais[filial].produtos[i].quantidade);
-            //filiais[filial].valorEmEstoque += filiais[filial].produtos[i].preco * filiais[filial].produtos[i].quantidade;
 
             printf("  - tipo: ");
             printf("%s", filiais[filial].produtos[i].tipo);
