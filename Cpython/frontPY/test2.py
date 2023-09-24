@@ -1,5 +1,5 @@
+#start
 
-# Agora, quando você abrir o arquivo, o caminho será relativo a "/caminho/do/seu/projeto"
-with open("/workspaces/UFT.cs/Cpython/output.txt", "r") as file:
+with open("/workspaces/UFT.cs/Cpython/backC/output.txt", "r", encoding="utf-8") as file:
     contents = file.read().strip()
     print(contents)
