@@ -12,6 +12,6 @@ int main() {
     arquivo = fopen("output.txt", "w");
     fprintf(arquivo, "%s", input);
     fclose(arquivo);
-
+    
     return 0;
 }
