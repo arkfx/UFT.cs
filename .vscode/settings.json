@@ -1,5 +1,6 @@
 {
     "python.terminal.executeInFileDir": false,
+
     "C_Cpp.errorSquiggles": "enabled",
     "files.associations": {
         "cctype": "c"
