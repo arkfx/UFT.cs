@@ -1,14 +1,28 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
 
 int main() {
-    char text[1000];
+    FILE *fp;
+    char input[100];
+    char path[PATH_MAX];
 
-    printf("Enter the text to save: ");
-    scanf("%s", text);
+    fp = fopen("output.txt", "w");
 
-    FILE *file = fopen("output.txt", "w");
-    fprintf(file, "%s", text);
-    fclose(file);
+    if (fp == NULL) {
+        printf("Error creating file.\n");
+        return 1;
+    }
+
+    printf("Enter input: ");
+    scanf("%s", input);
+
+    fprintf(fp, "%s", input);
+
+    realpath("output.txt", path);
+    printf("File path: %s\n", path);
+
+    fclose(fp);
 
     return 0;
 }
