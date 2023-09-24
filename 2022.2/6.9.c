@@ -67,6 +67,7 @@ void readBool(){
         scanf(" %c", & rCHAR);
         if(rCHAR == '-'){
             Menu();
+            
         }
         if(rCHAR != 's' && rCHAR != 'n' && rCHAR != 'S' && rCHAR != 'N'){
             clearOUT();
