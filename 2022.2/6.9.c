@@ -51,7 +51,8 @@ void readString(){
     while (strlen(rSTRING) == 0){
         printf("%s", ask);
         scanf(" %s", & rSTRING);
-        if(strcmp(rSTRING, "-1") == 0){
+        //if rSTRING == any negative number call Menu()
+        if(rSTRING[0] == '-'){
             Menu();
         }
         if(strlen(rSTRING) == 0){
