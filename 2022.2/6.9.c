@@ -26,7 +26,7 @@ void clearIN(){
     strcpy(rTIPOs, "");
 }
 
-void clearOUT(){
+void clearOUT(int error){
     while((getchar()) != '\n');
     printf("entrada invalida, tente novamente.\n");
     printf("\n");
@@ -36,12 +36,12 @@ void readFloat(){
     clearIN();
     while (rFLOAT <= 0){
         printf("%s", ask);
-        scanf(" %f", & rFLOAT);
-        if(rFLOAT <= 0){
-            clearOUT();
-            if(rFLOAT == -1){
-                Menu();
-            }
+        scanf(" %f%*[^\n]", &rFLOAT);
+        if(rFLOAT == 0){
+            clearOUT(1);        
+        } else if (rFLOAT < 0){
+            printf("\n");
+            Menu();
         }
     }
 }
@@ -51,7 +51,6 @@ void readString(){
     while (strlen(rSTRING) == 0){
         printf("%s", ask);
         scanf(" %s", & rSTRING);
-        //if rSTRING == any negative number call Menu()
         if(rSTRING[0] == '-'){
             Menu();
         }
@@ -68,7 +67,6 @@ void readBool(){
         scanf(" %c", & rCHAR);
         if(rCHAR == '-'){
             Menu();
-            
         }
         if(rCHAR != 's' && rCHAR != 'n' && rCHAR != 'S' && rCHAR != 'N'){
             clearOUT();
@@ -126,7 +124,7 @@ typedef struct {
     float porcentagemLimpeza;
     float porcentagemPereciveis;
     ProdutoMais ProdutoMaisCaro;
-    ProdutoMais ProdutoMaisBarato;
+    ProdutoMais ProdutoMaisBarato;  
 } Filial;
 Filial filiais[35];
 
@@ -364,11 +362,11 @@ void printFilial(int filial){
             printf("- Nenhum produto cadastrado nessa filial");
             printf("\n");
         }
+        }
+        printf("Valor total R$: ");
+        printf("%.2f", filiais[filial].valorEmEstoque);
+        printf("\n");
     }
-    printf("Valor total R$: ");
-    printf("%.2f", filiais[filial].valorEmEstoque);
-    printf("\n");
-}
 
 void printAll(){
     for(int i = 1; i <= 34; i++){
