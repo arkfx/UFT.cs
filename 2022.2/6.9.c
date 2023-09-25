@@ -26,7 +26,7 @@ void clearIN(){
     strcpy(rTIPOs, "");
 }
 
-void clearOUT(int error){
+void clearOUT(){
     while((getchar()) != '\n');
     printf("entrada invalida, tente novamente.\n");
     printf("\n");
