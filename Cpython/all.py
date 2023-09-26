@@ -10,10 +10,9 @@ import subprocess
 
 # Rest of the code goes here
 
-
-# Run test1.c in the background
+subprocess.Popen(['gcc', '/workspaces/UFT.cs/Cpython/backC/test1.c', '-o', 'test1'])
 subprocess.Popen(['./test1'])
+
 
 # Run test2.py in the background
 subprocess.Popen(['python', '/workspaces/UFT.cs/Cpython/frontPY/test2.py'])
-
