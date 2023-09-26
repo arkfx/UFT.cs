@@ -1,9 +1,28 @@
-"""
-This module reads the contents of a file named 'output.txt' and prints it to the console.
-"""
-
 #start
 
-with open("/workspaces/UFT.cs/Cpython/backC/output.txt", "r", encoding="utf-8") as file:
-    contents = file.read().strip()
-    print(contents)
+current_line = 0
+
+def read_line():
+    global current_line
+    with open('/workspaces/UFT.cs/Cpython/backC/output.txt', 'r') as file:
+        for i, line in enumerate(file):
+            if i == current_line:
+                current_line += 1
+                return line.strip()
+        return None
+
+def writeToFile(content):
+    with open('/workspaces/UFT.cs/Cpython/frontPY/input.txt', 'a') as file:
+        file.write(content + '\n')
+
+writeToFile('primeira linha de input')
+writeToFile('segunda linha de input')
+
+line = read_line()
+print(line)
+
+line = read_line()
+print(line)
+
+line = read_line()
+print(line)
