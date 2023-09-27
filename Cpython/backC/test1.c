@@ -1,13 +1,9 @@
 #include <stdio.h>
+ 
+char* content;
 
 int main() {
-    char* content1 = "primeira linha de output";
-    char* content2 = "segunda linha de output";
-    writeToFile(content1);
-    writeToFile(content2);
-    readNextLine();
-    readNextLine();
-    readNextLine();
+    
     readNextLine();
     return 0;
 }
