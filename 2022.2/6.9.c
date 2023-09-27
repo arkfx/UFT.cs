@@ -2,28 +2,34 @@
 #include <string.h>
 #include <stdbool.h>
 
+
 char ask[1000];
 
-
 float rFLOAT = 0;
+char  rFLOATs [100];
+bool validF = false;
 
 char rSTRING[100];
 
 bool rBOOL = false;
+char rCHARs[10];
 char rCHAR;
 
 char rTIPOs[10];
 char rTIPO;
 
 
-
 void clearIN(){
     rFLOAT = 0;
+    strcpy(rFLOATs, "");
+
     strcpy(rSTRING, "");
-    rCHAR = '\0';
+    
     rBOOL = false;
-    rTIPO = '\0';
+    rCHAR = '\0';
+
     strcpy(rTIPOs, "");
+    rTIPO = '\0';
 }
 
 void clearOUT(){
@@ -32,11 +38,32 @@ void clearOUT(){
     printf("\n");
 }
 
+void validFloat() {
+    const char* valid_chars = "0123456789,.-";
+    size_t len = strspn(rFLOATs, valid_chars);
+    if (len != strlen(rFLOATs)) {
+        // Input string contains invalid characters
+        validF = false;
+    } else if (strchr(rFLOATs, ',') != strrchr(rFLOATs, ',') ||
+               strchr(rFLOATs, '-') != strrchr(rFLOATs, '-')) {
+        // Input string contains multiple commas or hyphens
+        validF = false;
+    } else {
+        // Input string is a valid floating-point number
+        validF = true;
+    }
+}
+    
+
 void readFloat(){
     clearIN();
     while (rFLOAT <= 0){
         printf("%s", ask);
-        scanf(" %f%*[^\n]", &rFLOAT);
+        scanf(" %S", &rFLOATs);
+        validFloat();
+        if(validF == true){
+            rFLOAT = atof(rFLOATs);
+        }
         if(rFLOAT == 0){
             clearOUT(1);        
         } else if (rFLOAT < 0){
@@ -109,7 +136,7 @@ typedef struct {
     char nome[100];
     float preco;
     int quantidade;
-    char tipo[10];
+    char tipo[100];
 } Produto;
 
 typedef struct {
