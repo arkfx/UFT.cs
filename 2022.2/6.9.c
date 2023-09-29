@@ -33,7 +33,7 @@ void clearIN(){
 }
 
 void clearOUT(){
-    while((getchar()) != '\n');
+    clearIN();
     printf("entrada invalida, tente novamente.\n");
     printf("\n");
 }
@@ -45,11 +45,12 @@ void validFloat() {
         // Input string contains invalid characters
         validF = false;
     } else if (strchr(rFLOATs, ',') != strrchr(rFLOATs, ',') ||
-               strchr(rFLOATs, '-') != strrchr(rFLOATs, '-') ||
-               (strchr(rFLOATs, ',') == rFLOATs && strchr(rFLOATs, '.') == NULL) ||
-               (strchr(rFLOATs, '.') == rFLOATs && strchr(rFLOATs, ',') == NULL) ||
-               strchr(rFLOATs+1, '-') != NULL) {
-        // Input string contains multiple commas or hyphens, or comma/dot is on the first character
+        strchr(rFLOATs, '-') != strrchr(rFLOATs, '-') ||
+        (strchr(rFLOATs, ',') == rFLOATs && strchr(rFLOATs, '.') == NULL) ||
+        (strchr(rFLOATs, '.') == rFLOATs && strchr(rFLOATs, ',') == NULL) ||
+        strchr(rFLOATs+1, '-') != NULL) {
+        // Input string contains multiple commas or hyphens
+        // or comma/dot is on the first character
         // or there is one comma and one dot
         // or hyphen is not on the first character
         validF = false;
@@ -62,18 +63,17 @@ void validFloat() {
 
 void readFloat(){
     clearIN();
-    while (rFLOAT <= 0){
+    while (strcmp(rFLOATs, "") == 0){
         printf("%s", ask);
         scanf(" %S", &rFLOATs);
         validFloat();
         if(validF == true){
             rFLOAT = atof(rFLOATs);
-        }
-        if(rFLOAT == 0){
-            clearOUT(1);        
-        } else if (rFLOAT < 0){
-            printf("\n");
-            Menu();
+        } else{
+            if (strcmp(rFLOATs, "//") == 0){
+                Menu();
+            }
+            clearOUT();
         }
     }
 }
@@ -163,7 +163,7 @@ Filial filiais[35];
 void Menu(){
     start:
     printf("\n");
-    int action = 0;
+    float action = 0;
     while(action > 4 || action < 1){
         strcpy(ask, "1 - Adicionar produtos\n2 - Editar produtos\n3 - Remover produtos\n4 - Listar produtos\nO que deseja fazer? (1-4): ");
         readFloat();
@@ -239,7 +239,7 @@ void Menu(){
 int main() {
     printf("----Bem vindo ao sistema de estoque----");
     printf("\n");
-    printf("digite qualquer valor negativo para voltar ao menu\n");
+    printf("digite // para voltar ao menu\n");
     Menu();
 
     return 0;
