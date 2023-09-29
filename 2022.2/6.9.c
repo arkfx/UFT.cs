@@ -45,8 +45,13 @@ void validFloat() {
         // Input string contains invalid characters
         validF = false;
     } else if (strchr(rFLOATs, ',') != strrchr(rFLOATs, ',') ||
-               strchr(rFLOATs, '-') != strrchr(rFLOATs, '-')) {
-        // Input string contains multiple commas or hyphens
+               strchr(rFLOATs, '-') != strrchr(rFLOATs, '-') ||
+               (strchr(rFLOATs, ',') == rFLOATs && strchr(rFLOATs, '.') == NULL) ||
+               (strchr(rFLOATs, '.') == rFLOATs && strchr(rFLOATs, ',') == NULL) ||
+               strchr(rFLOATs+1, '-') != NULL) {
+        // Input string contains multiple commas or hyphens, or comma/dot is on the first character
+        // or there is one comma and one dot
+        // or hyphen is not on the first character
         validF = false;
     } else {
         // Input string is a valid floating-point number
