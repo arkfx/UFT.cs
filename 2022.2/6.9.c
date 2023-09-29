@@ -65,7 +65,7 @@ void readFloat(){
     clearIN();
     while (strcmp(rFLOATs, "") == 0){
         printf("%s", ask);
-        scanf(" %S", &rFLOATs);
+        scanf(" %s", &rFLOATs);
         validFloat();
         if(validF == true){
             rFLOAT = atof(rFLOATs);
