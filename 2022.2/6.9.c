@@ -22,6 +22,7 @@ char rTIPO;
 void clearIN(){
     rFLOAT = 0;
     strcpy(rFLOATs, "");
+    validF = false;
 
     strcpy(rSTRING, "");
     
@@ -39,20 +40,13 @@ void clearOUT(){
 }
 
 void validFloat() {
-    const char* valid_chars = "0123456789,.-";
+    const char* valid_chars = "0123456789.-";
     size_t len = strspn(rFLOATs, valid_chars);
     if (len != strlen(rFLOATs)) {
-        // Input string contains invalid characters
         validF = false;
-    } else if (strchr(rFLOATs, ',') != strrchr(rFLOATs, ',') ||
-        strchr(rFLOATs, '-') != strrchr(rFLOATs, '-') ||
-        (strchr(rFLOATs, ',') == rFLOATs && strchr(rFLOATs, '.') == NULL) ||
-        (strchr(rFLOATs, '.') == rFLOATs && strchr(rFLOATs, ',') == NULL) ||
+    } else if (strchr(rFLOATs, '-') != strrchr(rFLOATs, '-') ||
+        strchr(rFLOATs, '.') != strrchr(rFLOATs, '.') ||
         strchr(rFLOATs+1, '-') != NULL) {
-        // Input string contains multiple commas or hyphens
-        // or comma/dot is on the first character
-        // or there is one comma and one dot
-        // or hyphen is not on the first character
         validF = false;
     } else {
         // Input string is a valid floating-point number

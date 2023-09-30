@@ -47,6 +47,9 @@ int main(){
         goto RepeatAll;
     }
 
+
+
+    PrintAll:
     printf("\n");
     printf("\n");
     printf("Qual posto de saúde deseja printar ? ");
@@ -76,6 +79,11 @@ int main(){
             printf("\033[31m%s\033[0m\n", "Não aplicada");
             }
         }
+    }
+    printf("deseja printar outro posto de saúde ? 1 para sim e 0 para não: ");
+    scanf("%d", &continuar);
+    if (continuar == 1){
+        goto PrintAll;
     }
 
 }
