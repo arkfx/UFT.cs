@@ -1,42 +1,43 @@
-import requests
-from bs4 import BeautifulSoup
 import os
+import requests
+import xml.etree.ElementTree as ET
+from urllib.parse import urlparse
 
-# URL da página de pesquisa
-url = 'https://exemplo.com/pesquisa?q=gatos'
+# URL do arquivo XML
+xml_url = "https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&tags=firolian+ahri"
 
-# Pasta onde as imagens serão salvas
-pasta_destino = 'imagens_gatos'
+# Pasta de destino para salvar as imagens
+pasta_destino = "/workspaces/UFT.cs/Cpython/img/"
 
-# Certifique-se de que a pasta de destino exista
+# Crie a pasta de destino se ela não existir
 if not os.path.exists(pasta_destino):
     os.makedirs(pasta_destino)
 
-# Enviar uma solicitação HTTP para a página de pesquisa
-response = requests.get(url)
+# Faça o download do arquivo XML
+response = requests.get(xml_url)
 
-# Verificar se a solicitação foi bem-sucedida
+# Verifique se a solicitação foi bem-sucedida
 if response.status_code == 200:
-    # Parsear o HTML da página
-    soup = BeautifulSoup(response.text, 'html.parser')
-
-    # Encontrar todas as tags de imagem
-    img_tags = soup.find_all('img')
-
-    # Iterar sobre as tags de imagem e fazer o download das imagens
-    for img_tag in img_tags:
-        img_url = img_tag.get('src')
-
-        # Certifique-se de que a URL da imagem não é vazia
-        if img_url:
-            # Obtenha o nome do arquivo da URL da imagem
-            img_nome = os.path.join(pasta_destino, os.path.basename(img_url))
-
-            # Faça o download da imagem
-            with open(img_nome, 'wb') as img_arquivo:
-                img_response = requests.get(img_url)
-                img_arquivo.write(img_response.content)
-
-            print(f'Imagem baixada: {img_nome}')
+    # Analise o XML
+    root = ET.fromstring(response.text)
+    
+    # Itere sobre as tags que contêm os URLs das imagens
+    for elemento in root.findall(".//file_url"):
+        url_imagem = elemento.text
+        
+        # Parse a URL para obter o nome do arquivo
+        nome_arquivo = os.path.basename(urlparse(url_imagem).path)
+        
+        # Defina o caminho completo para salvar a imagem
+        caminho_imagem = os.path.join(pasta_destino, nome_arquivo)
+        
+        # Faça o download da imagem e salve-a na pasta de destino
+        response_imagem = requests.get(url_imagem)
+        if response_imagem.status_code == 200:
+            with open(caminho_imagem, "wb") as arquivo:
+                arquivo.write(response_imagem.content)
+            print(f"Imagem {nome_arquivo} salva com sucesso.")
+        else:
+            print(f"Falha ao baixar a imagem {nome_arquivo}. Status code: {response_imagem.status_code}")
 else:
-    print('Falha ao acessar a página de pesquisa')
+    print(f"Falha ao baixar o arquivo XML. Status code: {response.status_code}")
