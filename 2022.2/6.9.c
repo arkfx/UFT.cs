@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 
@@ -45,8 +46,10 @@ void validFloat() {
     if (len != strlen(rFLOATs)) {
         validF = false;
     } else if (strchr(rFLOATs, '-') != strrchr(rFLOATs, '-') ||
-        strchr(rFLOATs, '.') != strrchr(rFLOATs, '.') ||
-        strchr(rFLOATs+1, '-') != NULL) {
+    strchr(rFLOATs, '.') != strrchr(rFLOATs, '.') ||
+    strchr(rFLOATs+1, '-') != NULL ||
+    strncmp(rFLOATs, ".", 1) == 0 ||
+    rFLOATs[strlen(rFLOATs)-1] == '.') {
         validF = false;
     } else {
         // Input string is a valid floating-point number
@@ -59,7 +62,7 @@ void readFloat(){
     clearIN();
     while (strcmp(rFLOATs, "") == 0){
         printf("%s", ask);
-        scanf(" %s", &rFLOATs);
+        scanf(" %s", rFLOATs);
         validFloat();
         if(validF == true){
             rFLOAT = atof(rFLOATs);
@@ -77,7 +80,7 @@ void readString(){
     while (strlen(rSTRING) == 0){
         printf("%s", ask);
         scanf(" %s", & rSTRING);
-        if(rSTRING[0] == '-'){
+        if(strcmp(rSTRING, "//") == 0){
             Menu();
         }
         if(strlen(rSTRING) == 0){
@@ -111,7 +114,7 @@ void readTipo(){
     while (rTIPO != 'm' && rTIPO != 'l' && rTIPO != 'p' && rTIPO != 'M' && rTIPO != 'L' && rTIPO != 'P'){
         printf("%s", ask);
         scanf(" %c", & rTIPO);
-        printf("%c", rTIPO);
+        printf(" %c", rTIPO);
         if(rTIPO == '-'){
             Menu();
         }
@@ -157,12 +160,16 @@ Filial filiais[35];
 void Menu(){
     start:
     printf("\n");
+    printf("\n");
+    printf("----------------------------------------------------------------");
+    printf("\n");
+    printf("\n");
     float action = 0;
-    while(action > 4 || action < 1){
+    while(action != 1 && action != 2 && action != 3 && action != 4){
         strcpy(ask, "1 - Adicionar produtos\n2 - Editar produtos\n3 - Remover produtos\n4 - Listar produtos\nO que deseja fazer? (1-4): ");
         readFloat();
         action = rFLOAT;
-        if (action > 4 || action < 1){
+        if (action != 1 && action != 2 && action != 3 && action != 4){
             clearOUT();
         }
     }
@@ -231,9 +238,10 @@ void Menu(){
 }
 
 int main() {
-    printf("----Bem vindo ao sistema de estoque----");
+    //printf("----Bem vindo ao sistema de estoque----");
     printf("\n");
-    printf("digite // para voltar ao menu\n");
+    printf("digite // para voltar ao menu");
+    printf("\n");
     Menu();
 
     return 0;

@@ -3,6 +3,7 @@
 
     "C_Cpp.errorSquiggles": "enabled",
     "files.associations": {
-        "cctype": "c"
+        "cctype": "c",
+        "random": "c"
     }
 }
