@@ -110,10 +110,10 @@ void readBool(){
 
 void readTipo(){
     clearIN();
-    capitalize(rInTYPEs);
     while (strcmp(rInTYPEs, "M") != 0 && strcmp(rInTYPEs, "L") != 0 && strcmp(rInTYPEs, "P") != 0){
         printf("%s", ask);
         scanf(" %s", & rInTYPEs);
+        rInTYPEs[0] = toupper(rInTYPEs[0]);
         if(strcmp(rInTYPEs, "//") == 0){
             Menu();
         }
@@ -124,10 +124,10 @@ void readTipo(){
     if(strcmp(rInTYPEs, "M") == 0){
         strcpy(rTIPOs, "Merceria");
     }
-    if(rTIPO == 'L'){
+    if(strcmp(rInTYPEs, "L") == 0){
         strcpy(rTIPOs, "Limpeza");
     }
-    if(rTIPO == 'P'){
+    if(strcmp(rInTYPEs, "P") == 0){
         strcpy(rTIPOs, "Pereciveis");
     }
 }
