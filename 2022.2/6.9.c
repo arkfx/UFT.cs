@@ -7,17 +7,16 @@
 char ask[1000];
 
 float rFLOAT = 0;
-char  rFLOATs [100];
+char  rFLOATs [1000];
 bool validF = false;
 
-char rSTRING[100];
+char rSTRING[1000];
 
 bool rBOOL = false;
-char rCHARs[10];
-char rCHAR;
+char rCHARs[1000];
 
-char rTIPOs[10];
-char rTIPO;
+char rTIPOs[1000];
+char rInTYPEs[1000];
 
 
 void clearIN(){
@@ -28,10 +27,10 @@ void clearIN(){
     strcpy(rSTRING, "");
     
     rBOOL = false;
-    rCHAR = '\0';
+    strcpy(rCHARs, "");
 
     strcpy(rTIPOs, "");
-    rTIPO = '\0';
+    strcpy(rInTYPEs, "");
 }
 
 void clearOUT(){
@@ -91,39 +90,38 @@ void readString(){
 
 void readBool(){
     clearIN();
-    while (rCHAR != 's' && rCHAR!= 'n' && rCHAR != 'S' && rCHAR != 'N'){
+    while (strcmp(rCHARs, "s") != 0 && strcmp(rCHARs, "n") != 0 && strcmp(rCHARs, "S") != 0 && strcmp(rCHARs, "N") != 0){
         printf("%s", ask);
-        scanf(" %c", & rCHAR);
-        if(rCHAR == '-'){
+        scanf(" %s", & rCHARs);
+        if(strcmp(rCHARs, "//") == 0){
             Menu();
         }
-        if(rCHAR != 's' && rCHAR != 'n' && rCHAR != 'S' && rCHAR != 'N'){
+        if(strcmp(rCHARs, "s") != 0 && strcmp(rCHARs, "n") != 0 && strcmp(rCHARs, "S") != 0 && strcmp(rCHARs, "N") != 0){
             clearOUT();
         }
     }
-    if(rCHAR == 's' || rCHAR == 'S'){
+    if(strcmp(rCHARs, "s") == 0 || strcmp(rCHARs, "S") == 0){
         rBOOL = true;
     }
-    if(rCHAR == 'n' || rCHAR == 'N'){
+    if(strcmp(rCHARs, "n") == 0 || strcmp(rCHARs, "N") == 0){
         rBOOL = false;
     }
 }
 
 void readTipo(){
     clearIN();
-    while (rTIPO != 'm' && rTIPO != 'l' && rTIPO != 'p' && rTIPO != 'M' && rTIPO != 'L' && rTIPO != 'P'){
+    capitalize(rInTYPEs);
+    while (strcmp(rInTYPEs, "M") != 0 && strcmp(rInTYPEs, "L") != 0 && strcmp(rInTYPEs, "P") != 0){
         printf("%s", ask);
-        scanf(" %c", & rTIPO);
-        printf(" %c", rTIPO);
-        if(rTIPO == '-'){
+        scanf(" %s", & rInTYPEs);
+        if(strcmp(rInTYPEs, "//") == 0){
             Menu();
         }
-        if(rTIPO != 'm' && rTIPO != 'l' && rTIPO != 'p' && rTIPO != 'M' && rTIPO != 'L' && rTIPO != 'P'){
+        if(strcmp(rInTYPEs, "M") != 0 && strcmp(rInTYPEs, "L") != 0 && strcmp(rInTYPEs, "P") != 0){
             clearOUT();
         }
     }
-    rTIPO = toupper(rTIPO);
-    if(rTIPO == 'M'){
+    if(strcmp(rInTYPEs, "M") == 0){
         strcpy(rTIPOs, "Merceria");
     }
     if(rTIPO == 'L'){

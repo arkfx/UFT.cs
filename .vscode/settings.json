@@ -4,6 +4,7 @@
     "C_Cpp.errorSquiggles": "enabled",
     "files.associations": {
         "cctype": "c",
-        "random": "c"
+        "random": "c",
+        "string.h": "c"
     }
 }
