@@ -140,18 +140,11 @@ typedef struct {
 } Produto;
 
 typedef struct {
-    Produto ProdutoMaisCaro;
-    Produto ProdutoMaisBarato;
-} ProdutoMais;
-
-typedef struct {
     Produto produtos[100001];
     float valorEmEstoque;
     float porcentagemMerceria;
     float porcentagemLimpeza;
     float porcentagemPereciveis;
-    ProdutoMais ProdutoMaisCaro;
-    ProdutoMais ProdutoMaisBarato;  
 } Filial;
 Filial filiais[35];
 
@@ -423,4 +416,44 @@ void removeAll(){
         removeFilial(i);
     }
 }
-    
+
+void saveFilial(int filial){
+    FILE *fp;
+    fp = fopen("filial.txt", "w");
+    for (int i = 1; i <= 100000; i++){
+        fprintf(fp, "%s", filiais[filial].produtos[i].nome);
+        fprintf(fp, "%s", "\n");
+        fprintf(fp, "%f", filiais[filial].produtos[i].preco);
+        fprintf(fp, "%s", "\n");
+        fprintf(fp, "%d", filiais[filial].produtos[i].quantidade);
+        fprintf(fp, "%s", "\n");
+        fprintf(fp, "%s", filiais[filial].produtos[i].tipo);
+        fprintf(fp, "%s", "\n");
+    }
+    fclose(fp);
+}
+
+void saveAll(){
+    for(int i = 1; i <= 34; i++){
+        saveFilial(i);
+    }
+}
+
+void loadFilial(int filial){
+    FILE *fp;
+    fp = fopen("filial.txt", "r");
+    for (int i = 1; i <= 100000; i++){
+        if (filiais[filial].produtos[i].nome[0] == '\0'){
+            fscanf(fp, "%s", & filiais[filial].produtos[i].nome);
+            fscanf(fp, "%f", & filiais[filial].produtos[i].preco);
+            fscanf(fp, "%d", & filiais[filial].produtos[i].quantidade);
+        }   fscanf(fp, "%s", & filiais[filial].produtos[i].tipo);
+    }
+    fclose(fp);
+}
+
+void loadAll(){
+    for(int i = 1; i <= 34; i++){
+        loadFilial(i);
+    }
+}
