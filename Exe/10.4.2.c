@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
 
+float f = 1;
 
 int main(void){
 
@@ -15,45 +17,98 @@ int main(void){
     //obs.: Na leitura das medições do peso, utilize o valor -1 para indicar que a sequência de medições
     //finalizou (o valor -1 na entrada é o código para a parada da estrutura de repetição e não deve ser
     //processado). Considere que os valores de peso e frequência cardíaca são valores reais.
-
+    
     typedef struct{
         int idade;
         float peso[1001];
         float frequencia[7];
         float mediapeso;
         float maiorfrequencia;
+        float ultimopeso;
     } funcionario;
-    funcionario funcionarios[31];
+    funcionario funcionarios[33];
+
+    LerFuncionario:
+    printf("\n");
 
     int funcionarioLido;
     printf("Digite o numero do funcionario --> ");
-    scanf("%d", &funcionarioLido);
-
-    for(int mes = 1; mes <=6; mes ++){
+    scanf(" %d", &funcionarioLido);
+    int mes;
+    for(mes = 1; mes <=6; mes ++){
         printf("Digite a frequencia cardiaca do funcionario %d no mes %d --> ", funcionarioLido, mes);
-        scanf("%f", &funcionarios[funcionarioLido].frequencia[mes]);
-    
+        scanf(" %f", &funcionarios[funcionarioLido].frequencia[mes]);
+        if(funcionarios[funcionarioLido].frequencia[mes] > funcionarios[funcionarioLido].maiorfrequencia){
+            funcionarios[funcionarioLido].maiorfrequencia = funcionarios[funcionarioLido].frequencia[mes];
+        }
     }
+    int i = 1;
     do{
-        if (i )
         printf("Digite os pesos medidos do funcionario %d --> ", funcionarioLido);
         int pesolido;
-        scanf("%d", &pesolido);
+        scanf(" %d", &pesolido);
         if(pesolido < 0){
+            funcionarios[funcionarioLido].ultimopeso = funcionarios[funcionarioLido].peso[i-1];
             break;
         } else{
-            
+            funcionarios[funcionarioLido].peso[i] = pesolido;
         }
         i++;
         }while(true);
 
+    printf("Digite a idade do funcionario %d --> ", funcionarioLido);
+    scanf(" %d", &funcionarios[funcionarioLido].idade);
+    
+    float somapeso = 0;
+    int j;
+    for(j = 1; j <= i; j++){
+        somapeso += funcionarios[funcionarioLido].peso[j];
+    }
+    funcionarios[funcionarioLido].mediapeso = somapeso / (i - 1);
 
+    printf("Media de peso do funcionario %d --> %.2f\n", funcionarioLido, funcionarios[funcionarioLido].mediapeso);
+    printf("Maior frequencia cardiaca do funcionario %d --> %.2f\n", funcionarioLido, funcionarios[funcionarioLido].maiorfrequencia);
 
+    printf("Deseja ler outro funcionario? (1 - Sim / 0 - Nao) --> ");
+    int leroutro;
+    scanf(" %d", &leroutro);
+    if(leroutro == 1){
+        f++;
+        goto LerFuncionario;
+    }
 
+    int mediaMenorQuePeso = 0;
+    int mediaMaiorQuePeso = 0;
+    int mediaIgualPeso = 0;
 
+    for (i = 1; i <= 30; i++){
+        if(funcionarios[i].mediapeso != 0){
+            if(funcionarios[i].mediapeso > funcionarios[i].ultimopeso){
+                mediaMaiorQuePeso++;
+            }
+            if (funcionarios[i].mediapeso < funcionarios[i].ultimopeso){
+                mediaMenorQuePeso++;
+            } 
+            if (funcionarios[i].mediapeso == funcionarios[i].ultimopeso) {
+                mediaIgualPeso++;
+            }
+        }
+    }
 
+    printf("\n");
+    printf("Funcionarios com peso medio maior que o peso final -->  %d\n\n", mediaMaiorQuePeso);
+    printf("Funcionarios com peso medio menor que o peso final -->  %d\n\n", mediaMenorQuePeso);
+    printf("Funcionarios com peso medio igual ao peso final -->  %d\n\n", mediaIgualPeso);
+    
+    int maiorQue105 = 0;
+    for (i = 1; i <= 30; i++){
+        if(funcionarios[i].maiorfrequencia > 105){
+            maiorQue105++;
+        }
+    }
+    maiorQue105 = (maiorQue105 * 100) / f;
 
-
-
+    printf("Porcentagem de funcionarios com frequencia cardiaca maior que 105 --> %d%%\n\n", maiorQue105);
+    
     return 0;
 }
