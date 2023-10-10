@@ -418,8 +418,10 @@ void removeAll(){
 }
 
 void saveFilial(int filial){
-    FILE *fp;
-    fp = fopen("filial.txt", "w");
+    char nomeDoArquivo[100];
+    sprintf(nomeDoArquivo, "filial-%d.txt", filial);
+    FILE *fp;   
+    fp = fopen(nomeDoArquivo, "w");
     for (int i = 1; i <= 100000; i++){
         fprintf(fp, "%s", filiais[filial].produtos[i].nome);
         fprintf(fp, "%s", "\n");
