@@ -90,7 +90,7 @@ int main(){
     if (continuar == 1){
         goto repetirInput;
     } else{
-        printarReport();
+        printarRelatorio();
     }
 
 }
@@ -114,6 +114,95 @@ int calcularfrete(int cliente, int pedido){
             }
 }
 
-void printarReport(){
+void printarRelatorio(){
+    printf("\n");
+
+    printf("relatorio por: (1 para pedido; 2 para cliente; 3 para geral)");
+    int relatorio;
+    scanf("%d", &relatorio);
+
+    if (relatorio == 1){
+        relatorioPedido();
+    } else if (relatorio == 2){
+        relatorioCliente();
+    } else if (relatorio == 3){
+        relatorioGeral();
+    }
     
 }
+
+void relatorioPedido(){
+    printf("\n");
+    printf("numero do cliente ?: ");
+    int cliente;
+    scanf("%d", & cliente);
+    printf("\n");
+    printf("numero do pedido ?: ");
+    int pedido;
+    scanf("%d", & pedido);
+    printf("\n");
+    printf("tipo do produto: ");
+    if (clientes[cliente].pedidos[pedido].argamassaAC3 > 0){
+        printf("argamassaAC3");
+    } else if (clientes[cliente].pedidos[pedido].argamassaAC2 > 0){
+        printf("argamassaAC2");
+    } else if (clientes[cliente].pedidos[pedido].rejunte > 0){
+        printf("rejunte");
+    }
+    printf("\n");
+    printf("quantidade do produto: ");
+    if (clientes[cliente].pedidos[pedido].argamassaAC3 > 0){
+        printf("%d", clientes[cliente].pedidos[pedido].argamassaAC3);
+    } else if (clientes[cliente].pedidos[pedido].argamassaAC2 > 0){
+        printf("%d", clientes[cliente].pedidos[pedido].argamassaAC2);
+    } else if (clientes[cliente].pedidos[pedido].rejunte > 0){
+        printf("%d", clientes[cliente].pedidos[pedido].rejunte);
+    }
+    printf("\n");
+    printf("local de entrega: ");
+    if (clientes[cliente].pedidos[pedido].LocalDeEntrega == 1){
+        printf("palmas");
+    } else if (clientes[cliente].pedidos[pedido].LocalDeEntrega == 2){
+        printf("porto nacional");
+    }
+    printf("\n");
+    printf("valor do frete: %d", clientes[cliente].pedidos[pedido].valorDoFrete);
+    printf("\n");
+    printf("deseja imprimir outro relatorio ?: (1 para sim 2 para não)");
+    int continuar;
+    scanf("%d", &continuar);
+    if (continuar == 1){
+        printarRelatorio();
+    }
+}
+
+void relatorioCliente(){
+    printf("\n");
+    printf("numero do cliente ?: ");
+    int cliente;
+    scanf("%d", & cliente);
+    printf("\n");
+   
+    printf("\n");
+    printf("numero de pedidos feitos no periodo: ");
+    int nDePedidos = 0;
+    for (int i = 0; i < 11; i++){
+        if (clientes[cliente].pedidos[i].peso > 0){
+            nDePedidos++;
+        }
+    }
+    printf("%d", nDePedidos);
+    printf("\n");
+    printf("deseja imprimir outro relatorio ?: (1 para sim 2 para não)");
+    int continuar;
+    scanf("%d", &continuar);
+    if (continuar == 1){
+        printarRelatorio();
+    }
+
+}
+
+void relatorioGeral(){
+
+}
+
