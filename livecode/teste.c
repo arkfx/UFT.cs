@@ -72,9 +72,9 @@ void SelecionarCadeira(){
 
     if (cadeiras[linha][coluna] == 0) {
         cadeiras[linha][coluna] = 1;
-        printf("Cadeira reservada com sucesso!\n");
+        printf(BLUE_TEXT "\nCadeira reservada com sucesso!\n" RESET_COLOR);
     } else {
-        printf("Cadeira já reservada, por favor escolha outra.\n");
+        printf(RED_TEXT "\nCadeira já reservada, por favor escolha outra.\n" RESET_COLOR);
         SelecionarCadeira();
     }
     printf("\n");
