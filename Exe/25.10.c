@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+
 int main() {
     /* double num = 16.0;
     double result = sqrt(num);
