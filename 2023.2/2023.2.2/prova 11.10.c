@@ -55,11 +55,9 @@ void relatorios(){
     if (confirm == 1){
         relatorios();
     } else if (confirm == 0){
-
         printf("\n");
         printf("---FIM---");
         printf("\n");
-
     }
 }
 

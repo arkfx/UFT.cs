@@ -28,8 +28,9 @@ typedef struct {
 typedef struct {
     semana semanas[16];
 } produtor;
-
 produtor produtores[51];
+
+semnasSemEntrega[16];
 
 
 void relatorios(){
@@ -135,21 +136,13 @@ void relatorioDeAbastecimento(){
             }
         }
     }
-    
-    int sEntrega;
 
     for (int j = 1; j <= 15; j++){
         for (int i = 1; i <= 50; i++){
             if (produtores[i].semanas[j].naoEntregou == 1){
-                sEntrega++;
+                printf("houve uma semana sem entragas");
             }
         }
-    }
-    
-      
-
-    if (sEntrega > 50){
-        printf("houve uma semana sem entragas");
     }
 
     printf("\n");
