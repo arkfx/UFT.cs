@@ -21,7 +21,7 @@ selecionando-o pelo nome.
 
 Lembre-se de fornecer um menu de opções ao usuário e garantir que o programa 
 possa lidar com múltiplos contatos na lista. */
-
+//https://prod.liveshare.vsengsaas.visualstudio.com/join?F3ACCC26421BD711F13DDC638C623FD3E2E5
 
 typedef struct {
     char name[50];
