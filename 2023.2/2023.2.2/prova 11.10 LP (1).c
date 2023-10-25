@@ -22,6 +22,7 @@
 typedef struct {
     int alface;
     int repolho;
+    int naoEntregou;
 } semana;
 
 typedef struct {
@@ -125,24 +126,22 @@ void relatorioDeAbastecimento(){
     int TotalAlface;
     int TotalRepolho;
 
+    int sEntrega;
+
     for (int i = 1; i <= 50; i++){
         for (int j = 1; j <= 15; j++){
             TotalAlface += produtores[i].semanas[j].alface;
             TotalRepolho += produtores[i].semanas[j].repolho;
+            if (produtores[i].semanas[j].alface && produtores[i].semanas[j].repolho == 0){
+                produtores[i].semanas[j].naoEntregou = 1;
+                sEntrega++;
+            }
         }
     }  
 
-    //verificar se houve alguma semana sem entregas
-    int semanasSemEntregas;
-    for (int i = 1; i <= 50; i++){
-        for (int j = 1; j <= 15; j++){
-            if (produtores[i].semanas[j].alface == 0 && produtores[i].semanas[j].repolho == 0){
-                semanasSemEntregas++;
-            }
-        }
+    if (sEntrega > 50){
+        printf("houve uma semana sem entragas");
     }
-    
-
 
     printf("\n");
     printf("quantidade total de alfaces entregues no periodo: ");
@@ -175,7 +174,7 @@ int main() {
     printf("\n");
     repetirInput:
     printf("\n");
-    int relatorio;  
+
     printf("numero do produtor ?: ");
     int produtorInp;
     scanf(" %d", & produtorInp);
