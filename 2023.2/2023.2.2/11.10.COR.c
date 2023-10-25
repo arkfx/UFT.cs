@@ -126,18 +126,27 @@ void relatorioDeAbastecimento(){
     int TotalAlface;
     int TotalRepolho;
 
-    int sEntrega;
-
     for (int i = 1; i <= 50; i++){
         for (int j = 1; j <= 15; j++){
             TotalAlface += produtores[i].semanas[j].alface;
             TotalRepolho += produtores[i].semanas[j].repolho;
-            if (produtores[i].semanas[j].alface && produtores[i].semanas[j].repolho == 0){
+            if (produtores[i].semanas[j].alface == 0 && produtores[i].semanas[j].repolho == 0){
                 produtores[i].semanas[j].naoEntregou = 1;
+            }
+        }
+    }
+    
+    int sEntrega;
+
+    for (int j = 1; j <= 15; j++){
+        for (int i = 1; i <= 50; i++){
+            if (produtores[i].semanas[j].naoEntregou == 1){
                 sEntrega++;
             }
         }
-    }  
+    }
+    
+      
 
     if (sEntrega > 50){
         printf("houve uma semana sem entragas");
