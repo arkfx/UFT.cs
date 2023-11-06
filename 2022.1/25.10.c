@@ -59,7 +59,6 @@ Turma turmas[3];
 
 int main() {
     lerAlunos();
-    atualizarStatus();
     relatorios();
 
     return 0;
@@ -78,14 +77,8 @@ void lerAlunos() {
             scanf("%f", &turmas[i].alunos[j].nota3);
             printf("Digite a quantidade de faltas do aluno %d da turma %d: ", j, i);
             scanf("%d", &turmas[i].alunos[j].faltas);
-            turmas[i].alunos[j].mediaFinal = (turmas[i].alunos[j].nota1 + turmas[i].alunos[j].nota2 + turmas[i].alunos[j].nota3) / 3;
-        }
-    }
-}
 
-void atualizarStatus() {
-    for (int i = 1; i <= 2; i++) {
-        for (int j = 1; j <= 5; j++) {
+            turmas[i].alunos[j].mediaFinal = (turmas[i].alunos[j].nota1 + turmas[i].alunos[j].nota2 + turmas[i].alunos[j].nota3) / 3;
             if (turmas[i].alunos[j].faltas > 10) {
                 turmas[i].alunos[j].status = 0;
             } else if (turmas[i].alunos[j].mediaFinal < 5) {
@@ -142,25 +135,24 @@ void consultaPorTurma() {
     printf("Digite o número da turma: ");
     scanf("%d", &turma);
 
-    int alunos = 0;
+    int alunos = 5;
     int acimaDe8 = 0;
     int zero = 0;
     int substitutiva = 0;
     float media = 0;
 
     for (int i = 1; i <= 5; i++) {
-        if (turmas[turma].alunos[i].status == 2) {
+        if (turmas[turma].alunos[i].mediaFinal > 8) {
             acimaDe8++;
-        } else if (turmas[turma].alunos[i].status == 3) {
+        }
+        if (turmas[turma].alunos[i].status == 3) {
             substitutiva++;
         }
-
         if (turmas[turma].alunos[i].nota1 == 0 || turmas[turma].alunos[i].nota2 == 0 || turmas[turma].alunos[i].nota3 == 0) {
             zero++;
         }
 
         media += turmas[turma].alunos[i].mediaFinal;
-        alunos++;
     }
 
     media /= alunos;
