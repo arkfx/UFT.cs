@@ -69,12 +69,16 @@ void lerAlunos() {
         for (int j = 1; j <= 5; j++) {
             printf("Digite o nome do aluno %d da turma %d: ", j, i);
             scanf("%s", turmas[i].alunos[j].nome);
+
             printf("Digite a nota 1 do aluno %d da turma %d: ", j, i);
             scanf("%f", &turmas[i].alunos[j].nota1);
+
             printf("Digite a nota 2 do aluno %d da turma %d: ", j, i);
             scanf("%f", &turmas[i].alunos[j].nota2);
+
             printf("Digite a nota 3 do aluno %d da turma %d: ", j, i);
             scanf("%f", &turmas[i].alunos[j].nota3);
+            
             printf("Digite a quantidade de faltas do aluno %d da turma %d: ", j, i);
             scanf("%d", &turmas[i].alunos[j].faltas);
 
