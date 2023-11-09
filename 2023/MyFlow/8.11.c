@@ -198,10 +198,10 @@ void relatorioGeral(){
 
     printf("\n");
     printf("porcentagem de ocupação da garagem: ");
-    float porcentagem; 
-    porcentagem = ((garages[0].total * 100) / 150);
-    printf("%.2f", porcentagem);
-    printf("%");
+    float porcentagem = 0;
+    float total = garages[0].total;
+    porcentagem = ((total * 100) / 150);
+    printf("%.2f%%", porcentagem);
 
     printf("\n");
     menu();
