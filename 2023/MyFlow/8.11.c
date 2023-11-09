@@ -58,6 +58,24 @@ int main() {
     return 0;
 }
 
+void menu(){
+    printf("\n");
+    printf("o que deseja fazer ?: ");
+    printf ("1 = adicionar um veiculo; \n 2 = imprimir um relatorio? ");
+    int action;
+    scanf(" %d", & action);
+    if (action == 1){
+        printf("\n");
+        addCar();
+    } else if (action == 2){
+        printf("\n");
+        relatorios();
+    }
+
+    printf("\n");
+    menu();
+}
+
 void addCar(){
     printf("\n");
     printf("---ADICIONAR-VEICULO---");
@@ -109,23 +127,8 @@ void addCar(){
         }
     }
     printf("---LIMITE-DE-TIPOS-DE-CARROS-ALCANÇADO---");
-    printf("\n");
-    menu();
-}
 
-void menu(){
     printf("\n");
-    printf("o que deseja fazer ?: ");
-    printf ("1 = adicionar um veiculo; \n 2 = imprimir um relatorio? ");
-    int action;
-    scanf(" %d", & action);
-    if (action == 1){
-        printf("\n");
-        addCar();
-    } else if (action == 2){
-        printf("\n");
-        relatorios();
-    }
     menu();
 }
 
@@ -149,6 +152,9 @@ void relatorios(){
             printf("\n");
             buscaPorVeiculo();
     }
+
+    printf("\n");
+    menu();
 }
 
 
@@ -244,6 +250,7 @@ void relatorioPorCor(){
     printf("quantidade total de veiculos dessa cor: ");
     printf("%d", totalColor);
 
+    printf("\n");
     menu();
 }
 
@@ -290,6 +297,7 @@ void relatorioPorCodigo(){
     printf("quantidade total de veiculos desse codigo: ");
     printf("%d", totalCode);
 
+    printf("\n");
     menu();
 }
 
@@ -316,5 +324,7 @@ void buscaPorVeiculo(){
             break;
         }
     }
+
+    printf("\n");
     menu();
 }
