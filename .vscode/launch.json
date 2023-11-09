@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/workspaces/UFT.cs/Exe",
-      "program": "/workspaces/UFT.cs/Exe/build/Debug/outDebug",
+      "cwd": "/workspaces/UFT.cs/2023/MyFlow",
+      "program": "/workspaces/UFT.cs/2023/MyFlow/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
