@@ -29,36 +29,29 @@ momento. */
 
 typedef struct {
     int code;
-    //code = defined by user;
-
     int color;
     //1 = branco;
     //2 = preto;
     //3 = vermelho;
     //4 = cinza;
-
     int amount;
-    
 } typecar;
 
 typedef struct {
     typecar typecars[26];
     int total;
-    //total = sum of int amount of all typecars
     //max total = 150;
 } garage;
-garage garages[1];
+garage garages[1]; 
 
 
 int main() {
-    printf("\n");
     printf("---CONCESSIONÁRIA---");
-    printf("\n");
-    menu();
+    menu(1);
     return 0;
 }
 
-void menu(){
+void menu(int primeiraLeitura){
     printf("\n");
     printf("o que deseja fazer ?: ");
     printf ("1 = adicionar um veiculo; \n 2 = imprimir um relatorio? ");
@@ -66,26 +59,23 @@ void menu(){
     scanf(" %d", & action);
     if (action == 1){
         printf("\n");
-        addCar();
+        addCar(primeiraLeitura);
     } else if (action == 2){
         printf("\n");
         relatorios();
     }
-
-    printf("\n");
-    menu();
 }
 
-void addCar(){
+void addCar(int primeiraLeitura){
     printf("\n");
     printf("---ADICIONAR-VEICULO---");
     printf("\n");
 
-    printf("\n");
     if (garages[0].total >= 150){
+        printf("\n");
         printf("---QUANTIDADE-MAXIMA-DE-VEICULOS-ALCANÇADA---");
         printf("\n");
-        menu();
+        menu(primeiraLeitura);
     }
 
     int localCode;
@@ -98,12 +88,17 @@ void addCar(){
     printf("cor do veiculo ? ");
     scanf("%d", &localColor);
 
-    printf("quantidade ? ");
-    scanf("%d", &localAmount);
+    if (primeiraLeitura == 1){
+        printf("quantidade ? ");
+        scanf("%d", &localAmount);
+    } else {
+        localAmount = 1;
+    }
+     
     if((localAmount + garages[0].total) > 150){
         printf("---QUANTIDADE EXCEDE O LIMITE TOTAL DE VEICULOS");
         printf("\n");
-        menu();
+        menu(primeiraLeitura);
     }
 
     for (int i = 1; i <= 25; i++){
@@ -112,7 +107,7 @@ void addCar(){
             garages[0].total += localAmount;
             printf("veiculo adicionado no já existente tipo %d", i);
             printf("\n");
-            menu();
+            menu(primeiraLeitura);
         }
         if(garages[0].typecars[i].amount == 0){
             garages[0].typecars[i].code = localCode;
@@ -121,13 +116,13 @@ void addCar(){
             garages[0].total += localAmount;
             printf("veiculo adicionado no tipo %d", i);
             printf("\n");
-            menu();
+            menu(primeiraLeitura);
         }
     }
     printf("---LIMITE-DE-TIPOS-DE-CARROS-ALCANÇADO---");
 
     printf("\n");
-    menu();
+    menu(primeiraLeitura);
 }
 
 void relatorios(){
@@ -150,9 +145,6 @@ void relatorios(){
             printf("\n");
             buscaPorVeiculo();
     }
-
-    printf("\n");
-    menu();
 }
 
 
@@ -202,7 +194,7 @@ void relatorioGeral(){
     printf("%.2f%%", porcentagem);
 
     printf("\n");
-    menu();
+    menu(0);
 }
 
 void relatorioPorCor(){
@@ -249,7 +241,7 @@ void relatorioPorCor(){
     printf("%d", totalColor);
 
     printf("\n");
-    menu();
+    menu(0);
 }
 
 void relatorioPorCodigo(){
@@ -296,7 +288,7 @@ void relatorioPorCodigo(){
     printf("%d", totalCode);
 
     printf("\n");
-    menu();
+    menu(0);
 }
 
 void buscaPorVeiculo(){
@@ -324,5 +316,5 @@ void buscaPorVeiculo(){
     }
 
     printf("\n");
-    menu();
+    menu(0);
 }
