@@ -114,8 +114,6 @@ void addCar(){
             printf("\n");
             menu();
         }
-    }
-    for (int i = 1; i <= 25; i++){
         if(garages[0].typecars[i].amount == 0){
             garages[0].typecars[i].code = localCode;
             garages[0].typecars[i].color = localColor;
