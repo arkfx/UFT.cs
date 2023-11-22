@@ -5,7 +5,9 @@
     "cctype": "c",
     "random": "c",
     "string.h": "c",
-    "2022.1.C": "cpp"
+    "2022.1.C": "cpp",
+    "22.11.C": "cpp",
+    "22,11.C": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
