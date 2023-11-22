@@ -34,8 +34,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/workspaces/UFT.cs/2022.1",
-      "program": "/workspaces/UFT.cs/2022.1/build/Debug/outDebug",
+      "cwd": "/workspaces/UFT.cs/Exe",
+      "program": "/workspaces/UFT.cs/Exe/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
