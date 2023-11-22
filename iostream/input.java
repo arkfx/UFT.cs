@@ -18,11 +18,11 @@ public class input {
                 matriz[i][j] = Integer.parseInt(System.console().readLine());
         }
 
-        //cria o arquivo
-        java.io.File file = new java.io.File("testmatriz");
+        //cria o arquivo no disco
+        //java.io.File file = new java.io.File("testmatriz");
 
         //escreve a matriz no arquivo
-        java.io.FileOutputStream fos = new java.io.FileOutputStream("testmatriz");
+        java.io.FileOutputStream fos = new java.io.FileOutputStream("testmatriz.txt");
 
     }
 }
