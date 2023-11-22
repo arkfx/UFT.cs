@@ -1,0 +1,86 @@
+arkfx: no codigo selecionado, na linha 24, onde é criada um vetor da struct AtributoCustomoziado dentro da struct Endereco, o tamanho desse vetor sera determinado pelo usuario, como dinamicamente alterar o tamanho desse vetor durante a execução do codigo ?
+
+GitHub Copilot: Em C, não é possível alterar o tamanho de um array após sua declaração. No entanto, você pode usar a alocação dinâmica de memória para criar um array de tamanho variável. Aqui estão os passos para fazer isso:
+
+1. Altere a declaração do array `atributos` na estrutura `Endereco` para ser um ponteiro para `AtributoCustomizado`.
+2. Quando você souber o tamanho do array que deseja, use a função `malloc` ou `calloc` para alocar memória para o array.
+3. Quando terminar de usar o array, use a função `free` para liberar a memória alocada.
+
+Aqui está como você pode fazer isso:
+
+```c
+typedef struct {
+    char chave[50];
+    char valor[50];
+    int tipo; //1 = float, 2 = string.
+} AtributoCustomizado;
+
+typedef struct {
+    char cep[50];
+    char pais[50];
+    char estado[50];
+    char cidade[50];
+    char bairro[50];
+    char rua[50];
+    int numero;
+    AtributoCustomizado *atributos; // agora é um ponteiro
+} Endereco;
+
+// em algum lugar no seu código
+Endereco endereco;
+int tamanho = 10; // ou qualquer valor que você queira
+endereco.atributos = malloc(tamanho * sizeof(AtributoCustomizado));
+
+// quando terminar de usar o array
+free(endereco.atributos);
+```
+
+Lembre-se de sempre verificar se a alocação de memória foi bem-sucedida antes de usar o array. Se `malloc` ou `calloc` falhar, eles retornarão `NULL`.
+
+arkfx: como criar uma matriz 3d de tamanho variavel ?
+
+GitHub Copilot: Para criar uma matriz 3D de tamanho variável em C, você pode usar a alocação dinâmica de memória. Aqui estão os passos para fazer isso:
+
+1. Declare a matriz 3D como um ponteiro triplo.
+2. Quando você souber o tamanho da matriz que deseja, use a função `malloc` para alocar memória para a matriz.
+3. Para cada elemento da matriz, use novamente a função `malloc` para alocar memória para a matriz 2D correspondente.
+4. Repita o passo 3 para cada elemento da matriz 2D, alocando memória para a matriz 1D correspondente.
+5. Quando terminar de usar a matriz, use a função `free` para liberar a memória alocada.
+
+Aqui está como você pode fazer isso:
+
+```c
+// em algum lugar no seu código
+int tamanho1 = 10; // ou qualquer valor que você queira
+int tamanho2 = 10; // ou qualquer valor que você queira
+int tamanho3 = 10; // ou qualquer valor que você queira
+
+Matriz3DDeListasDeContatos matriz;
+matriz.matriz3d = malloc(tamanho1 * sizeof(MatrizDeListasDeContatos**));
+
+for(int i = 0; i < tamanho1; i++) {
+    matriz.matriz3d[i] = malloc(tamanho2 * sizeof(MatrizDeListasDeContatos*));
+    for(int j = 0; j < tamanho2; j++) {
+        matriz.matriz3d[i][j] = malloc(tamanho3 * sizeof(MatrizDeListasDeContatos));
+    }
+}
+
+// quando terminar de usar a matriz
+for(int i = 0; i < tamanho1; i++) {
+    for(int j = 0; j < tamanho2; j++) {
+        free(matriz.matriz3d[i][j]);
+    }
+    free(matriz.matriz3d[i]);
+}
+free(matriz.matriz3d);
+```
+
+Lembre-se de sempre verificar se a alocação de memória foi bem-sucedida antes de usar a matriz. Se `malloc` falhar, ele retornará `NULL`.
+
+arkfx: qual é a diferença entre realloc e malloc ?
+
+GitHub Copilot: `malloc` e `realloc` são funções de alocação de memória em C.
+
+`malloc(size_t size)` é usado para alocar um bloco de `size` bytes de memória no heap e retorna um ponteiro para o primeiro byte do bloco alocado. `malloc` não inicializa a memória alocada. Se a alocação falhar, `malloc` retorna `NULL`.
+
+`realloc(void* ptr, size_t size)` é usado para redimensionar o bloco de memória apontado por `ptr` que foi previamente alocado com `malloc`, `calloc` ou `realloc` para `size` bytes. O conteúdo da memória será inalterado até o mínimo do antigo e novo tamanho. Se o novo tamanho for maior, o valor dos bytes adicionais não é inicializado. Se `ptr` for `NULL`, então a chamada é equivalente a `malloc(size)`. Se `size` for `0` e `ptr` não for `NULL`, então a chamada é equivalente a `free(ptr)`. Se a realocação falhar, `realloc` retorna `NULL` e o bloco original é deixado intacto.
