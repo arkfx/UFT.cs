@@ -22,7 +22,7 @@ public class input {
         //java.io.File file = new java.io.File("testmatriz");
 
         //escreve a matriz no arquivo
-        java.io.FileOutputStream fos = new java.io.FileOutputStream("testmatriz.txt");
+        java.io.FileOutputStream fos = new java.io.FileOutputStream("testmatriz");
 
     }
 }
