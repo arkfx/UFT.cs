@@ -12,17 +12,31 @@ public class input {
         //declara a matriz
         int[][] matriz = new int[10][4];
 
-        //le a matriz a partir do input
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 4; j++)
-                matriz[i][j] = Integer.parseInt(System.console().readLine());
+        //preenche a matriz com o input do usuário
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 4; j++){
+                //System.out.print("Digite o valor da posição [" + i + "][" + j + "]: ");
+                //matriz[i][j] = Integer.parseInt(System.console().readLine());
+
+                //random minumin 10 and maximum 100
+                matriz[i][j] = (int)(Math.random() * 90) + 10;
+            }
+        
         }
 
-        //cria o arquivo no disco
-        //java.io.File file = new java.io.File("testmatriz");
+        //create the file testmatriz
+        java.io.File file = new java.io.File("testmatriz.txt");
 
-        //escreve a matriz no arquivo
-        java.io.FileOutputStream fos = new java.io.FileOutputStream("testmatriz");
-
+        //write the matriz in the file
+        try(java.io.PrintWriter output = new java.io.PrintWriter(file);){
+            for(int i = 0; i < 10; i++){
+                for(int j = 0; j < 4; j++){
+                    output.print(matriz[i][j] + " ");
+                }
+                output.println();
+            }
+        }catch(java.io.FileNotFoundException ex){
+            System.out.println("File not found");
+        }
     }
 }
