@@ -18,6 +18,8 @@
 //Se tiver mais que 2000kg, o valor do frete será 2 reais por pacote
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h> // para memset
 
 typedef struct {
     //quantidade
@@ -38,6 +40,9 @@ cliente clientes[3];
 
 int main(){
 
+    printf("Press Enter to continue...");
+    while(getchar() != '\n');
+
     repetirInput:
     printf("\n");
 
@@ -55,6 +60,10 @@ int main(){
     printf("numero do pedido ?: ");
     int pedido;
     scanf("%d", & pedido);
+
+    memset(&clientes[cliente].pedidos[pedido], 0, sizeof(clientes[cliente].pedidos[pedido]));
+    
+    printf("debug local de entrega: %d", clientes[cliente].pedidos[pedido].LocalDeEntrega );
 
     if (pedido < 1 || pedido > 10){
         printf("pedido invalido");
@@ -111,7 +120,8 @@ int calcularfrete(int cliente, int pedido){
     } else if (clientes[cliente].pedidos[pedido].peso > 2000){
             int nDePacotes = (clientes[cliente].pedidos[pedido].argamassaAC2 + clientes[cliente].pedidos[pedido].argamassaAC3 + clientes[cliente].pedidos[pedido].rejunte);
             clientes[cliente].pedidos[pedido].valorDoFrete = (nDePacotes * 2);
-            }
+    }
+
 }
 
 void printarRelatorio(){
@@ -153,9 +163,11 @@ void relatorioPedido(){
     printf("quantidade do produto: ");
     if (clientes[cliente].pedidos[pedido].argamassaAC3 > 0){
         printf("%d", clientes[cliente].pedidos[pedido].argamassaAC3);
-    } else if (clientes[cliente].pedidos[pedido].argamassaAC2 > 0){
+    } 
+    if (clientes[cliente].pedidos[pedido].argamassaAC2 > 0){
         printf("%d", clientes[cliente].pedidos[pedido].argamassaAC2);
-    } else if (clientes[cliente].pedidos[pedido].rejunte > 0){
+    }
+    if (clientes[cliente].pedidos[pedido].rejunte > 0){
         printf("%d", clientes[cliente].pedidos[pedido].rejunte);
     }
     printf("\n");
@@ -182,16 +194,30 @@ void relatorioCliente(){
     int cliente;
     scanf("%d", & cliente);
     printf("\n");
-   
+
     printf("\n");
-    printf("numero de pedidos feitos no periodo: ");
-    int nDePedidos = 0;
-    for (int i = 0; i < 11; i++){
+    printf("\n");
+
+    printf("media de peso dos pedidos feitos no periodo: ");
+    int pesoTotal;
+    int nPedidos;
+    int mediaPeso;
+
+    for (int i = 1; i <= 10; i++){
         if (clientes[cliente].pedidos[i].peso > 0){
-            nDePedidos++;
+            nPedidos++;
+            pesoTotal += clientes[cliente].pedidos[i].peso;
         }
     }
-    printf("%d", nDePedidos);
+    mediaPeso = pesoTotal / nPedidos;
+    printf("%d", mediaPeso);
+
+
+    printf("\n");
+    printf("\n");
+   
+    printf("numero de pedidos feitos no periodo: ");
+    printf("%d", nPedidos);
     printf("\n");
     printf("deseja imprimir outro relatorio ?: (1 para sim 2 para não)");
     int continuar;
@@ -203,6 +229,26 @@ void relatorioCliente(){
 }
 
 void relatorioGeral(){
+    printf("\n");
+    printf("\n");
+
+    int kgTotal;
+    int menosDe1k;
+
+    printf("kg de material vendidos no periodo: ");
+
+    for(int i = 1; i <=2; i++){
+        for(int j = i; j <= 10; j++){
+            kgTotal += clientes[i].pedidos[j].peso;
+            if (clientes[i].pedidos[j].peso < 1000){
+                menosDe1k++;
+            }
+        }
+    }
+    printf("%d", kgTotal);
+
+    printf("quantidade de pedidos com menos de 1000kg: ");
+    printf("%d", menosDe1k);    
 
 }
 

@@ -34,8 +34,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/workspaces/UFT.cs/2022.2/2022.2.2",
-      "program": "/workspaces/UFT.cs/2022.2/2022.2.2/build/Debug/outDebug",
+      "cwd": "/workspaces/UFT.cs/2023/MyFlow",
+      "program": "/workspaces/UFT.cs/2023/MyFlow/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
