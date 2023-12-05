@@ -56,7 +56,7 @@ void lerAluno(){
         menu();
         return;
     }
-
+    
 
     printf("nome do aluno ? ");
     scanf("%s", turmas[nTurma].alunos[nAluno].nome);
