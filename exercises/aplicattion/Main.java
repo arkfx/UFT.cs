@@ -1,9 +1,8 @@
-package workspaces.UFT.cs.application;
+package exercises.aplicattion;
 
 import java.util.Scanner;
-import UFT.cs.entities.Car;
-import UFT.cs.entities.Garage;
-
+import exercises.entities.Car;
+import exercises.entities.Garage;
  
  /* Uma concessionária de veículos mantêm o cadastro de seus veículos desta forma:
     código do veículo (número inteiro),
