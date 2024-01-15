@@ -1,4 +1,4 @@
-package UFT.cs.entities;
+package exercises.entities;
 
 public class Car {
 
@@ -39,16 +39,14 @@ public class Car {
         this.quantity = quantity;
     }
 
-    public boolean verifyType(Integer id, Integer color, Integer quantity) {
-        for (int i = 0; i < Garage.getCurrentTypes; i++) {
+    public void verifyType(Integer id, Integer color, Integer quantity, Garage garage, Car[] cars) {
+        for (int i = 0; i < garage.getCurrentTypes(); i++) {
             if (id == cars[i].getId() && color == cars[i].getColor()) {
                 cars[i].setQuantity(cars[i].getQuantity() + quantity);
-                break;
-            }
-            if (i == Garage.getCurrentTypes - 1) {
-                cars[Garage.getCurrentTypes] = new Car(id, color, quantity);
-                break;
+                return;
             }
         }
+        cars[garage.getCurrentTypes()] = new Car(id, color, quantity);
+        return;   
     }
 }

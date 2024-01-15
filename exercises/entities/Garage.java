@@ -1,4 +1,4 @@
-package UFT.cs.entities;
+package exercises.entities;
 
 public class Garage{
 
@@ -27,7 +27,7 @@ public class Garage{
     }
 
     public void setCurrentTypes() {
-        currentTypes+= 1;
+        currentTypes += 1;
     }
 
     public boolean currentCapacity(Integer quantity) {

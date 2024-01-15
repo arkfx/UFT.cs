@@ -31,29 +31,31 @@ public class Main {
     public static void main(String[] args) {
         
         Garage garage = new Garage();
-        Car[] cars = new Car[garage.getMAXTYPE];
+        Car[] cars = new Car[garage.getMAXTYPE()];
 
-        readData(cars);    
+        readData(cars, garage);    
+        
         
     }
 
 
-
-    public static void readData(Car[] cars) {
+    public static void readData(Car[] cars, Garage garage) {
         Scanner input = new Scanner(System.in);
+        Car car = new Car();
         int resp;
-       do {    
+        do {    
         
-            if (getcurrentCapacity() >= getMAXCAPACITY()) {
+            if (garage.getCurrentCapacity() >= garage.getMAXCAPACITY()) {
                 System.out.println("Capacidade máxima atingida");
                 break;
             }
             
             boolean verify = false;
+            int quantity;
             do{
                 System.out.println("digite a quantidade de veículos a serem cadastrados");
-                int quantity = input.nextInt();
-                verify = currentCapacity(quantity);
+                quantity = input.nextInt();
+                verify = garage.currentCapacity(quantity);
             }while(verify);
             
             
@@ -63,7 +65,7 @@ public class Main {
             System.out.print("Digite o código da cor do carro (1 - Branco / 2 - Preto / 3 - Vermelho / 4 - Cinza) --> ");
             int color = input.nextInt();
 
-            verifyType(id, color, quantity);
+            car.verifyType(id, color, quantity, garage, cars);
 
 
 
@@ -72,6 +74,7 @@ public class Main {
 
             
        } while (resp != 0);
+       input.close();
 
     }
     
