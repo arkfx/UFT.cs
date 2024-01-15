@@ -1,8 +1,8 @@
-package aplicattion;
+package workspaces.UFT.cs.application;
 
-import UFT.CS.java.util.Scanner;
-import UFT.CS.entities.Car;
-import UFT.CS.entities.Garage;
+import workspaces.UFT.cs.java.util.Scanner;
+import workspaces.UFT.cs.entities.Car;
+import workspaces.UFT.cs.entities.Garage;
 
  
  /* Uma concessionária de veículos mantêm o cadastro de seus veículos desta forma:

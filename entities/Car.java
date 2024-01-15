@@ -1,4 +1,4 @@
-package entities;
+package UFT.cs.entities;
 
 public class Car {
 
