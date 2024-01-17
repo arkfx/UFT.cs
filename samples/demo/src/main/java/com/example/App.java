@@ -1,5 +1,5 @@
 package samples.demo.src.main.java.com.example;
-import 
+import samples.demo.src.main.java.com.example.garage;
 import java.util.Scanner;
 
 
