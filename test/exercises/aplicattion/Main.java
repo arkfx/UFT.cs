@@ -1,8 +1,9 @@
-package exercises.aplicattion;
+package test.exercises.aplicattion;
 
 import java.util.Scanner;
-import exercises.entities.Car;
-import exercises.entities.Garage;
+
+import test.exercises.entities.Car;
+import test.exercises.entities.Garage;
  
  /* Uma concessionária de veículos mantêm o cadastro de seus veículos desta forma:
     código do veículo (número inteiro),

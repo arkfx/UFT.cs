@@ -1,4 +1,4 @@
-package exercises.entities;
+package test.exercises.entities;
 
 public class Garage{
 

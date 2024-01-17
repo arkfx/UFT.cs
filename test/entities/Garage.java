@@ -1,4 +1,4 @@
-package UFT.cs.entities;
+package test.entities;
 
 public class Garage{
 
