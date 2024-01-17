@@ -1,5 +1,7 @@
 package samples.demo.src.main.java.com.example;
+import 
 import java.util.Scanner;
+
 
 /* Uma concessionária de veículos mantêm o cadastro de seus veículos desta forma:
     código do veículo (número inteiro),
@@ -45,7 +47,23 @@ public class App
 
         Scanner input = new Scanner(System.in);
         int resp = input.nextInt();
-        
+        switch (resp) {
+            case 1:
+                Garage,               
+                break;
+            case 2:
+                remove();
+                break;
+            case 3:
+                reports();
+                break;
+            case 4:
+                System.out.println("Saindo...");
+                break;
+            default:
+                System.out.println("Opção inválida");
+                break;
+        }
 
         input.close();
     }

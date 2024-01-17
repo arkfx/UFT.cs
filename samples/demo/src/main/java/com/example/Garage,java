@@ -1,3 +1,4 @@
+
 public class Garage {
     
     public int max_capacity = 150;
@@ -24,7 +25,9 @@ public class Garage {
             break;
         }
         system.out.println("Insert car id: ");
-         
+        int id = scanner.nextInt();
+
+
 
     }
 }
