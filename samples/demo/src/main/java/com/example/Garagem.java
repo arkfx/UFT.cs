@@ -6,7 +6,7 @@ public class Garagem {
     public static int max_capacity = 150;
     public static int max_type = 25;
 
-    public class Car {
+    public static class Car {
         public int id = 0;
         public int color = 0;
         public int quantity = 0;

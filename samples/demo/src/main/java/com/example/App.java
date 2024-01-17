@@ -1,4 +1,5 @@
 package com.example;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -34,6 +35,7 @@ public class App
 {
     public static void main(String[] args)
     {
+        Arrays.setAll(Garagem.cars, i -> new Garagem.Car());
         App.menu();
     }
 
