@@ -1,4 +1,4 @@
-package com.example;
+package samples.demo.src.main.java.com.example;
 
 import java.util.Arrays;
 import java.util.Scanner;
