@@ -1,4 +1,4 @@
-package test.exercises.entities;
+package exe.exercises.entities;
 
 public class Car {
 

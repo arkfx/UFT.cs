@@ -1,0 +1,21 @@
+public class Garage {
+    
+    public int max_capacity = 150;
+    public int current_capacity = 0;
+
+    public class Car {
+        public int id;
+        public int color;
+        public int quantity;
+    }
+
+    //arraylist
+    Car cars = new Car();
+
+    //cars.add(cars);
+    //cars.remove(cars);
+    //int size = cars.size();
+    //cars.get(0);
+    //cars.set(0, new Car());
+    //cars.clear();
+}

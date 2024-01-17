@@ -1,4 +1,4 @@
-package test.entities;
+package exe.entities;
 
 public class Garage{
 
