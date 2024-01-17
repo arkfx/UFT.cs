@@ -1,6 +1,11 @@
 package com.example;
+
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.InputMismatchException;
+
+import com.example.entities.Garagem;
+import com.example.entities.Reports;
 
 
 /* Uma concessionária de veículos mantêm o cadastro de seus veículos desta forma:
@@ -31,23 +36,22 @@ import java.util.Scanner;
     esporadicamente, então o programa deve ser capaz de inserir um veículo (apenas 1) a qualquer
     momento.  */
 
-public class App 
-{
-    public static void main(String[] args)
-    {
+public class App {
+    private static Scanner input = new Scanner(System.in);
+    public static void main(String[] args) {
         Arrays.setAll(Garagem.cars, i -> new Garagem.Car());
         App.menu();
     }
 
     //main menu
     public static void menu() {
+        System.out.println("\n\n\n");
         System.out.println("1 - Inserir veículo");
-        System.out.println("2 - Remover veículo");
+        System.out.println("2 - Remover quantidade de veículos");
         System.out.println("3 - Relatórios");   
         System.out.println("4 - Sair");
 
-        Scanner input = new Scanner(System.in);
-        int resp = input.nextInt();
+        int resp = validInput("\nDigite a opção desejada: ");
         switch (resp) {
             case 1:
                 Garagem.insert();
@@ -59,13 +63,56 @@ public class App
                 Reports.report();
                 break;
             case 4:
-                System.out.println("Saindo...");
+                exitProgram();
+                input.close();
                 return;
             default:
-                System.out.println("Opção inválida");
+                System.out.println("\nOpção inválida");
                 break;
         }
         menu();
+    }
+
+     public static int validInput(String print) {
+        int entry;
+        do{
+            System.out.print(print);
+            entry = 0;
+            
+            try {   //tenta converter a entrada para int
+                entry = input.nextInt();
+                if (entry < 0) {
+                    System.out.println("\nValor negativo, tente novamente.\n" );
+                    entry = 0;
+                }
+            } catch (InputMismatchException e) {    //caso não seja possível
+                char codeChar = input.next().charAt(0); //pega o primeiro caractere da entrada
+
+                if(codeChar == '/') {   // caso o usuário digite '/', volta ao menu
+                    menu();
+                }
+            
+
+                //caso não converteu a entrada para int e o usuario não digitou '/', retorna mensagem de erro
+                System.out.print("\nEntrada inválida, tente novamente.\n" );
+                input.nextLine();   //buffer do teclado
+            }
+        }while (entry == 0);    //enquanto a entrada for 0, continua pedindo uma entrada válida
+        
+        return entry;
+    }
+
+     public static void exitProgram() {
+        System.out.print("\n\nFinalizando programa");
+        for (int i = 0; i < 3; i++) {
+            try {
+                Thread.sleep(1000);
+                System.out.print(".");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.exit(0);
     }
 
 }

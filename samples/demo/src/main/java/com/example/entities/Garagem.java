@@ -1,5 +1,5 @@
-package com.example;
-import java.util.Scanner;
+package com.example.entities;
+import com.example.App;
 
 public class Garagem {
     public static int current_capacity = 0;
@@ -13,25 +13,24 @@ public class Garagem {
     }
     //array of objects
     public static Car cars[] = new Car[max_type];
-
+    
     public static void insert(){
         if (current_capacity >= max_capacity) {
-            System.out.println("Garagem cheia");
+            System.out.println("\nGaragem cheia.\n");
             return;
         }
-        Scanner input = new Scanner(System.in);
 
-        System.out.println("id do carro: ");
-        int id = input.nextInt();
+        System.out.println("\n\n---Inserir veículo---\n");
 
-        System.out.println("codigo da cor do carro: \t 1 - branco \t 2 - preto \t 3 - vermelho \t 4 - cinza: ");
-        int color = input.nextInt();
+        int id = 0;
+        id = App.validInput("\n\tId do carro: ");
 
-        System.out.println("quantidade: ");
-        int quantity = input.nextInt();
+        int color = App.validInput("\n\n\tCódigo da cor do carro: \n\n\t 1 - Branco \n\t 2 - Preto \n\t 3 - Vermelho \n\t 4 - Cinza: ");
+
+        int quantity = App.validInput("\n\tQuantidade: ");
 
         if (current_capacity + quantity > max_capacity) {
-            System.out.println("capacidade maxima atingida");
+            System.out.println("\nCapacidade maxima atingida.");
             return;
         }
 
@@ -39,7 +38,7 @@ public class Garagem {
             if (cars[i].id == id && cars[i].color == color) {
                 cars[i].quantity += quantity;
                 current_capacity += quantity;
-                System.out.println("Carro adicionado");
+                System.out.println("\nQuantidade adicionada!");
                 return;
             }
         }
@@ -49,30 +48,34 @@ public class Garagem {
                 cars[i].color = color;
                 cars[i].quantity = quantity;
                 current_capacity += quantity;
-                System.out.println("Carro adicionado");
+                System.out.println("\nCarro adicionado\n");
                 return;
             }
         }
-        System.out.println("limite de tipos de carros atingido");
+        System.out.println("\nLimite de tipos de carros atingido.\n");
         return;
     }
 
     public static void remove(){
-        Scanner input = new Scanner(System.in);
+        if (current_capacity == 0) {
+            System.out.println("\nGaragem vazia.\n");
+            return;
+        }
 
-        System.out.println("id do carro: ");
-        int id = input.nextInt();
+        System.out.println("\n\n---Remover veículo---\n");
 
-        System.out.println("codigo da cor do carro: \t 1 - branco \t 2 - preto \t 3 - vermelho \t 4 - cinza: ");
-        int color = input.nextInt();
+        int id = App.validInput("\nId do carro: ");
+
+        int color = App.validInput("\n\nCódigo da cor do carro: \n\n 1 - branco \n 2 - preto \n 3 - vermelho \n 4 - cinza: ");
 
         for (int i = 0; i < cars.length; i++) {
             if (cars[i].id == id && cars[i].color == color) {
-                System.out.println("quantidade atual: " + cars[i].quantity);
-                System.out.println("quantidade a ser removida: ");
-                int quantity = input.nextInt();
+                System.out.println("\n\tQuantidade atual: " + cars[i].quantity);
+                System.out.println("\nQuantidade a ser removida: ");
+                int quantity = App.validInput("\n\tQuantidade: ");
+
                 if (quantity > cars[i].quantity) {
-                    System.out.println("quantidade inserida maior que a atual");
+                    System.out.println("\nQuantidade inserida maior que a atual.\n");
                     return;
                 }
                 cars[i].quantity -= quantity;
@@ -81,7 +84,8 @@ public class Garagem {
                 return;
             }
         }
-        System.out.println("tipo de Carro não encontrado");
+        System.out.println("\nTipo de Carro não encontrado.\n");
         return;
     }
+
 }
