@@ -1,4 +1,4 @@
-package samples.demo.src.main.java.com.example.garage;
+package samples.demo.src.main.java.com.example;
 public class Garage {
     
     public int max_capacity = 150;

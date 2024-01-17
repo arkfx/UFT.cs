@@ -1,5 +1,4 @@
 package samples.demo.src.main.java.com.example;
-import samples.demo.src.main.java.com.example.garage;
 import java.util.Scanner;
 
 
@@ -49,7 +48,7 @@ public class App
         int resp = input.nextInt();
         switch (resp) {
             case 1:
-                Garage,               
+                Garage.insert();
                 break;
             case 2:
                 remove();
