@@ -8,7 +8,6 @@ public class Garage {
         public int color;
         public int quantity;
     }
-
     //arraylist
     Car cars = new Car();
 
@@ -18,4 +17,14 @@ public class Garage {
     //cars.get(0);
     //cars.set(0, new Car());
     //cars.clear();
+
+    public static void insert(){
+        if (Garage.current_capacity >= Garage.max_capacity) {
+            System.out.println("Garage is full");
+            break;
+        }
+        system.out.println("Insert car id: ");
+         
+
+    }
 }
