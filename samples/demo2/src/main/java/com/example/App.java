@@ -1,52 +1,103 @@
-package samples.demo2.src.main.java.com.example;
+package com.example;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import samples.demo2.src.main.java.com.example.entities.Individual;
-import samples.demo2.src.main.java.com.example.entities.Legal;
-import samples.demo2.src.main.java.com.example.entities.Person;
 
-/**
- * Hello world!
- *
- */
-
-
+import com.example.entities.Individual;
+import com.example.entities.Legal;
+import com.example.entities.Person;
 
 public class App {
     static Scanner input = new Scanner(System.in);
     
     public static void main( String[] args ) {
-        System.out.println( "Hello World!" );
+        menu();
     }
 
     public static void menu() {
-        System.out.println()
+        System.out.println("\nSelecione o tipo de pessoa:\n");
 
         System.out.println("1 - Individual");
         System.out.println("2 - Legal");
-        System.out.println("3 - Sair");
-        System.out.print("Digite a opção desejada: ");
+        System.out.println("3 - Relatorio: ");
+        System.out.println("4 - Finalizar.\n");
+        double resp = validInput("\n\tDigite a opção desejada: ");
+        int resp2 = (int) resp; //maior gambiarra da historia
 
+        switch(resp2) {
 
+            case 1:
+                insertIndividual();
+                break;
 
+            case 2:
+                insertLegal();
+                break;
+
+            case 3:
+                report();
+                break;
+
+            case 4:
+                exitProgram();
+                break;
+        }
+        
+        menu();
     }
 
     public static void insertIndividual() {
-        Scanner input = new Scanner(System.in);
 
-        System.out.println("Digite o nome: ");
+
+        System.out.print("\n\tDigite o nome: ");
+        input.nextLine();
+        String name = input.nextLine();
+        
+        Double yIncome = validInput("\n\tDigite a renda anual: ");
+
+        Double healthExpenditures = validInput("\n\tDigite os gastos com saúde: ");
+        
+        Individual individual = new Individual(name, yIncome, healthExpenditures);
+
+        individual.setTaxPaid(individual.calcTax());
+
+    }
+
+    public static void insertLegal() {
+
+        System.out.println("\n\tDigite o nome: ");
+        input.nextLine();
         String name = input.nextLine();
 
-        Double yIncome = validInput("Digite a renda anual: ");
+        Double yIncome = validInput("\n\tDigite a renda anual: ");
+        Integer numbersEmployees = (int) validInput("\n\tDigite o número de funcionários: ");
 
-        System.out.println("Digite os gastos com saúde: ");
-        Double healthExpenditures = input.nextDouble();
+        Legal legal = new Legal(name, yIncome, numbersEmployees);
+ 
+        legal.setTaxPaid(legal.calculateTax());
 
-        Individual individual = new Individual(name, yIncome, healthExpenditures);
-        individual.setTaxPaid(individual.CalcTax());
-
-        System.out.println("Taxa a ser paga: " + individual.getTaxPaid());
     }
+
+
+    public static void report() {
+
+        if (Person.getList().isEmpty()) {
+            System.out.println("\nNenhum imposto foi pago ainda.\n");
+            return;
+        }
+
+        System.out.println("\nRelatório de impostos pagos:\n");
+
+        for (Person person : Person.getList()) {
+            System.out.println(person);
+        }
+
+        System.out.println("\nTotal de impostos pagos: " + String.format("%.2f", Person.calcTotalTax()));
+
+    }
+
+
+
 
     public static double validInput(String print) {
         double entry;
@@ -67,7 +118,6 @@ public class App {
                     menu();
                 }
             
-
                 //caso não converteu a entrada para int e o usuario não digitou '/', retorna mensagem de erro
                 System.out.print("\nEntrada inválida, tente novamente.\n" );
                 input.nextLine();   //buffer do teclado
@@ -77,6 +127,24 @@ public class App {
         return entry;
     }
 
+    
+    public static void exitProgram() {
+        System.out.print("\n\nFinalizando programa");
+        for (int i = 0; i < 3; i++) {
+            try {
+                Thread.sleep(1000);
+                System.out.print(".");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
+        System.exit(0);
+    }
 
+    
 }
+
+
+
+

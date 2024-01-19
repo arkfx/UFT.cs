@@ -1,25 +1,21 @@
-package samples.demo2.src.main.java.com.example.entities;
+package com.example.entities;
 
 public class Individual extends Person {
 
     private Double healthExpenditures;
 
     public Individual(){
+        super();
     }
-
-    public Individual (Double healthExpenditures){
+    
+    public Individual(String name, Double yIncome, Double healthExpenditures){
+        super(name, yIncome);
         this.healthExpenditures = healthExpenditures;
+        Person.addPerson(this);
     }
 
-    public Double getHealthExpenditures(){
-        return healthExpenditures;
-    }
 
-    public void setHealthExpenditures(Double healthExpenditures){
-        this.healthExpenditures = healthExpenditures;
-    }
-
-    Double CalcTax(){
+    public Double calcTax(){
         if (getyIncome() < 20000.00){
             return yIncome * 0.15 - (healthExpenditures * 0.5);
         }

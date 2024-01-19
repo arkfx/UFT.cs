@@ -1,4 +1,4 @@
-package samples.demo2.src.main.java.com.example.entities;
+package com.example.entities;
 
 public class Legal extends Person {
     //tax
@@ -8,19 +8,29 @@ public class Legal extends Person {
     private Integer numbersEmployees;
 
     public Legal(){
+        super();
     }
 
     public Legal (String name, Double yIncome, Integer numbersEmployees){
         super(name, yIncome);
         this.numbersEmployees = numbersEmployees;
+        Person.addPerson(this);
     }
 
     public Integer getNumbersEmployees() {
         return numbersEmployees;
     }
 
+    public Double getYIncome() {
+        return yIncome;
+    }
+
     public void setNumbersEmployees(Integer numbersEmployees) {
         this.numbersEmployees = numbersEmployees;
+    }
+
+    public void setYIncome(Double yIncome) {
+        this.yIncome = yIncome;
     }
 
 
