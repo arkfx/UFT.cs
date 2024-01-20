@@ -5,7 +5,10 @@ interface Payment {
     void calculatePayment();
     void recalculateInstallment();
     void pay();
+    double fee = 0.0;
 }
+
+
 
 
 

@@ -1,6 +1,6 @@
 package com.example.entities;
 
-public class Paypal implements Payment {
+public class Paypal implements Payment{
 
     @Override
     public void calculateInstallment() {
