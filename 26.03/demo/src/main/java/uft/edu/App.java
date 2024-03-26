@@ -17,6 +17,7 @@ public class App {
         System.out.println("8 - printar o estado da televisão");
         System.out.println("9 - Sair");
         
+        
         int opcao = 0;
         while (opcao != 9) {
             System.out.println("Digite a opção desejada:");

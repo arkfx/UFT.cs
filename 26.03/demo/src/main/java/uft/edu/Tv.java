@@ -6,12 +6,12 @@ public class Tv {
     private int canal;
     private int volume;
     
-    public Tv() {
+    protected Tv() {
         ligada = false;
         canal = 1;
         volume = 0;
     }
-
+    
     public void ligar() {
         ligada = true;
     }
@@ -28,7 +28,7 @@ public class Tv {
         canal++;
     }
     public void diminuirCanal() {
-        canal--;
+        canal--; 
     }
     public void trocarCanal(int novoCanal) {
         canal = novoCanal;
