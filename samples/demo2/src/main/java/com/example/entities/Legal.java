@@ -2,7 +2,7 @@ package com.example.entities;
 
 public class Legal extends Person {
     //tax
-    private final Double TAX = 0.16;
+    priva final Double TAX = 0.16;
     private final Double TAX10 = 0.14;
 
     private Integer numbersEmployees;

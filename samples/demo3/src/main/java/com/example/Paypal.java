@@ -1,16 +1,17 @@
 package com.example;
 
-class paypal implements Payment {
-    void startContract() {
+
+class Paypal implements Payment {
+    public void startContract() {
         System.out.println("Starting contract");
     }
-    void payContract() {
+    public void payContract() {
         System.out.println("Paying contract");
     }
-    void viewContract() {
+    public void viewContract() {
         System.out.println("Viewing contract");
     }
-    void endContract() {
+    public void endContract() {
         System.out.println("Ending contract");
     }
 
