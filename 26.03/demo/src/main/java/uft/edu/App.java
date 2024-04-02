@@ -5,7 +5,7 @@ public class App {
 
     public static void main(String[] args) {
         Tv televisao = new Tv();
-        Scanner scanner = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
         System.out.println("1 - Ligar");
         System.out.println("2 - Desligar");
@@ -21,7 +21,7 @@ public class App {
         int opcao = 0;
         while (opcao != 9) {
             System.out.println("Digite a opção desejada:");
-            opcao = scanner.nextInt();
+            opcao = scan.nextInt();
             switch (opcao) {
                 case 1:
                     televisao.ligar();
@@ -43,7 +43,7 @@ public class App {
                     break;
                 case 7:
                     System.out.println("Digite o novo canal:");
-                    int novoCanal = scanner.nextInt();
+                    int novoCanal = scan.nextInt();
                     televisao.trocarCanal(novoCanal);
                     break;
                 case 8:
@@ -51,7 +51,7 @@ public class App {
                     break;
                 case 9:
                     System.out.println("Saindo...");
-                    scanner.close();
+                    scan.close();
                     break;
                 default:
                     System.out.println("Opção inválida");
