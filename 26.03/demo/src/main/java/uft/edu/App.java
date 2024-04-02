@@ -5,7 +5,7 @@ public class App {
 
     public static void main(String[] args) {
         Tv televisao = new Tv();
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);  
 
         System.out.println("1 - Ligar");
         System.out.println("2 - Desligar");
