@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 5
-#define MAX
 
 struct _list {
   unsigned int qty;
