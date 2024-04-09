@@ -1,4 +1,3 @@
- 
 #include "StaticList.h"
 #include <stdio.h>
 
