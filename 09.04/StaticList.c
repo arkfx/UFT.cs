@@ -41,13 +41,25 @@ bool StaticList_search(StaticList *list, int valor, int *index) {
  * @return true se a inserção foi bem sucedida, false caso contrário
  */
 bool StaticList_insert(StaticList *list, int novoItem) {
-  if (!StaticList_is_full(list)) {
-    list->data[list->qty++] = novoItem;
-    return true;
-  }
-  return false;
+    if (!StaticList_is_full(list)) {
+        int i = 0;
+        // armazena a posição de inserção de um novo item na variavel I
+        for (i = 0; i < list->qty; i++) {
+            if (list->data[i] > novoItem) {
+                break;
+            }
+        }
+        // Mova os elementos para a direita para abrir espaço para o novo item
+        for (int j = list->qty; j > i; j--) {
+            list->data[j] = list->data[j - 1];
+        }
+        // Insira o novo item
+        list->data[i] = novoItem;
+        list->qty++;
+        return true;
+    }
+    return false;
 }
-
 /**
  * Tenta remover um elemento da lista;
  * @param StaticList* ponteiro para a lista estática
