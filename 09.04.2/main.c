@@ -44,7 +44,28 @@ int menuUI() {
 int main(void) {
 
   StaticList *lista1 = StaticList_create();
-  
+  char op;
+  do {
+    op = menuUI();
+    switch (op) {
+    case 1:
+      insertUI(lista1);
+      break;
+    case 2:
+      searchUI(lista1);
+      break;
+    case 3:
+      removeUI(lista1);
+      break;
+    case 4:
+      puts("Imprimindo: ");
+      StaticList_print(lista1);
+      break;
+    case 0:
+      puts("Até outra vez!");
+      break;
+    }
+  } while (op != '0');
 
   return 0;
 }
