@@ -1,12 +1,6 @@
 #include "TCircList.h"
 #include <stddef.h>
-
-
-TCircList *TCircList_create() {}
-
-bool TCircList_insert(TCircList *list, int valor) { return false; }
-
-void TCircList_print(TCircList *list) {}
+#include <stdlib.h>
 
 TCircList *TCircList_create() {
   TCircList *list = (TCircList *)malloc(sizeof(TCircList));
