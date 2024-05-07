@@ -42,3 +42,22 @@ void TCircList_print(TCircList *list) {
   }
   printf("\n");
 }
+
+bool TCircList_equals(TCircList *list1, TCircList *list2) {
+  if (list1->size != list2->size)
+    return false;
+
+  TNo *node1 = list1->head;
+  TNo *node2 = list2->head;
+
+  do {
+    if (node1->valor != node2->valor)
+      return false;
+
+    node1 = node1->prox;
+    node2 = node2->prox;
+  } while (node1 != list1->head && node2 != list2->head);
+
+  return true;
+}
+

@@ -55,4 +55,13 @@ bool TCircList_insert(TCircList *, int);
  */
 void TCircList_print(TCircList *);
 
+/**
+ * @brief Verifica se duas listas são iguais.
+ *
+ * @param list1 A primeira lista para comparar.
+ * @param list2 A segunda lista para comparar.
+ * @return Verdadeiro se as listas são iguais, falso caso contrário.
+ */
+bool TCircList_equals(TCircList *list1, TCircList *list2);
+
 #endif
