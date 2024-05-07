@@ -34,9 +34,11 @@ void TCircList_print(TCircList *list) {
   if (!list->head)
     return;
   TNo *aux = list->head;
-  do {
-    printf("%d ", aux->valor);
-    aux = aux->prox;
-  } while (aux != list->head);
+  if (list->head) {
+    do {
+      printf("%d ", aux->valor);
+      aux = aux->prox;
+    } while (aux != list->head);
+  }
   printf("\n");
 }
