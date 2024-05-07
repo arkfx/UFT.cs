@@ -2,8 +2,16 @@
 #define LINKED_CIRC_LIST_H
 #include <stdbool.h>
 
-typedef struct _no TNo;
-typedef struct list TCircList;
+typedef struct TNo {
+    int valor;
+    struct TNo *prox;
+} TNo;
+
+typedef struct TCircList {
+    TNo *head;
+    int size;
+} TCircList;
+
 
 TCircList *TCircList_create();
 
