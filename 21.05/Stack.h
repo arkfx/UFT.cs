@@ -1,6 +1,8 @@
 #ifndef STACK_H
 #define STACK_H
 #include <stdbool.h>
+#include <stdlib.h>
+#include <stdio.h>
 typedef unsigned int uint;
 typedef struct _stack Stack;
 /*
