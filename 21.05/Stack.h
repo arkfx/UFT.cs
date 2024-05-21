@@ -47,6 +47,8 @@ bool Stack_is_full(Stack *);
 
 /**
  * Muda o tamanho da pilha
+ * Aumenta ou diminui o tamanho da pilha
+ * remove elementos caso o novo tamanho seja menor que o tamanho atual
  * @param Stack* stack - Ponteiro para a pilha
  * @param unsigned int new_size - Novo tamanho da pilha
  */
