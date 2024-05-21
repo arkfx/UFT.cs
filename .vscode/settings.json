@@ -58,6 +58,7 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "05.03.2.C": "cpp",
-    "tcirclist.h": "c"
+    "tcirclist.h": "c",
+    "stack.h": "c"
   }
 }
