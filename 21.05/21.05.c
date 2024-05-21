@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <Stack.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 struct _stack {
     unsigned int size;
