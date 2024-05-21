@@ -15,7 +15,7 @@ int main() {
     printf("--interface--");
 
     START:
-    printf("\n1 - Stack creation \n 2 - push \n 3 - pop \n 4 - read top \n 5 - stack delete \n 6 - print data 7 - change size\n");
+    printf("\n1 - Stack creation \n 2 - push \n 3 - pop \n 4 - read top \n 5 - stack delete \n 6 - print data \n 7 - change size\n");
     int op, value;
     scanf("%d", &op);
     switch (op) {
@@ -50,7 +50,7 @@ int main() {
             break;
         case 6:
             printf("what data do you want to print? ");
-            printf("1 - all \n 2 - size 3 - if is empty or full");
+            printf("1 - all \n 2 - size \n 3 - if is empty or full \n");
             int op2;
             scanf("%d", &op2);
             switch (op2) {
