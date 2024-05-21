@@ -13,6 +13,7 @@ typedef struct _stack Stack;
 Stack *Stack_create(unsigned int size);
 /**
  * Insere um elemento na pilha.
+ * Aumenta o tamanho da pilha automaticamente caso necessário.
  * @param Stack* stack - Ponteiro para a pilha
  * @param int value - Valor a ser inserido
  * @return bool - true se a inserção foi bem sucedida, false caso contrário
@@ -43,5 +44,13 @@ bool Stack_is_empty(Stack *);
  * @return bool - true se a pilha estiver cheia, false caso contrário
  */
 bool Stack_is_full(Stack *);
+
+/**
+ * Muda o tamanho da pilha
+ * @param Stack* stack - Ponteiro para a pilha
+ * @param unsigned int new_size - Novo tamanho da pilha
+ */
+void Stack_change_size(Stack *, unsigned int);
+
 
 #endif

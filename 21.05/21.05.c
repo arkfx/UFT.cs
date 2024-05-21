@@ -15,7 +15,7 @@ int main() {
     printf("--interface--");
 
     START:
-    printf("\n1 - Stack creation \n 2 - push \n 3 - pop \n 4 - read top \n 5 - stack delete \n 6 - print data");
+    printf("\n1 - Stack creation \n 2 - push \n 3 - pop \n 4 - read top \n 5 - stack delete \n 6 - print data 7 - change size\n");
     int op, value;
     scanf("%d", &op);
     switch (op) {
@@ -38,7 +38,7 @@ int main() {
             if (Stack_pop(stack, &value)) {
                 printf("Value removed: %d", value);
             } else {
-                printf("Failed to remove value");
+                printf("Failed to remove value, stack is empty");
             }
             break;
         case 4:
@@ -76,6 +76,13 @@ int main() {
                     break;
             }
             break;
+        case 7:
+            printf("New size: ");
+            unsigned int new_size;
+            scanf("%d", &new_size);
+            Stack_change_size(stack, new_size);
+            break;
+
         default:
             printf("Invalid option");
             break;
@@ -94,7 +101,8 @@ Stack* Stack_create(unsigned int size) {
 
 bool Stack_push(Stack *stack, int value) {
     if (Stack_is_full(stack)) {
-        return false;
+        // Stack is full, increase size by one
+        Stack_change_size(stack, stack->size + 1);
     }
     stack->data[++stack->top] = value;
     return true;
@@ -109,7 +117,7 @@ bool Stack_pop(Stack *stack, int *value) {
 }
 
 uint Stack_size(Stack *stack) {
-    return stack->top + 1;
+    return stack->size;
 }
 
 bool Stack_is_empty(Stack *stack) {
@@ -118,4 +126,13 @@ bool Stack_is_empty(Stack *stack) {
 
 bool Stack_is_full(Stack *stack) {
     return stack->top == stack->size - 1;
+}
+
+void Stack_change_size(Stack *stack, unsigned int size) {
+    stack->data = (int *)realloc(stack->data, size * sizeof(int));
+    stack->size = size;
+    //remove elements if the new size is smaller than the current size, until the new size is reached
+    while (stack->top >= size) {
+        stack->top--;
+    }
 }
