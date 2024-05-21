@@ -59,6 +59,7 @@
   "files.associations": {
     "05.03.2.C": "cpp",
     "tcirclist.h": "c",
-    "stack.h": "c"
+    "stack.h": "c",
+    "stdio.h": "c"
   }
 }
