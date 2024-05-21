@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <Stack.h>
+#include "Stack.h"
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -13,8 +13,10 @@ int main() {
     printf("Dynamic Stack");
 
     printf("--interface--");
-    printf("1 - Stack creation \n 2 - push \n 3 - pop \n 4 - read top \n 5 - stack delete \n 6 - print data");
-    int op;
+
+    START:
+    printf("\n1 - Stack creation \n 2 - push \n 3 - pop \n 4 - read top \n 5 - stack delete \n 6 - print data");
+    int op, value;
     scanf("%d", &op);
     switch (op) {
         case 1:
@@ -25,7 +27,6 @@ int main() {
             break;
         case 2:
             printf("Value: ");
-            int value;
             scanf("%d", &value);
             if (Stack_push(stack, value)) {
                 printf("Value inserted successfully");
@@ -34,7 +35,6 @@ int main() {
             }
             break;
         case 3:
-            int value;
             if (Stack_pop(stack, &value)) {
                 printf("Value removed: %d", value);
             } else {
@@ -80,11 +80,11 @@ int main() {
             printf("Invalid option");
             break;
     } 
-    
+    goto START;
     return 0;
 }
 
-Stack_create(unsigned int size) {
+Stack* Stack_create(unsigned int size) {
     Stack *stack = (Stack *)malloc(sizeof(Stack));
     stack->size = size;
     stack->top = -1;
