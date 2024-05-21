@@ -133,6 +133,7 @@ void Stack_change_size(Stack *stack, unsigned int size) {
     stack->size = size;
     //remove elements if the new size is smaller than the current size, until the new size is reached
     while (stack->top >= size) {
+        printf("removing %d\n", stack->data[stack->top]);
         stack->top--;
     }
 }

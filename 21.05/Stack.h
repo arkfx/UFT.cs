@@ -44,7 +44,6 @@ bool Stack_is_empty(Stack *);
  * @return bool - true se a pilha estiver cheia, false caso contrário
  */
 bool Stack_is_full(Stack *);
-
 /**
  * Muda o tamanho da pilha
  * Aumenta ou diminui o tamanho da pilha
