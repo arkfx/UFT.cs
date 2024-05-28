@@ -10,9 +10,11 @@ int main() {
     printf("\n--interface--\n");
 
     START:
-    printf("\n 1 - Stack creation \n 2 - push \n 3 - pop \n 4 - read top \n 5 - print data \n 6 - destroy stack\n");
+    printf("\n 1 - Stack creation \n 2 - push \n 3 - pop \n 4 - read top \n 5 - print data \n 6 - destroy stack\n 7 - compare parenthesis\n");
     int op, value;
+    while ((getchar()) != '\n');
     scanf("%d", &op);
+    while ((getchar()) != '\n');
     switch (op) {
         case 1:
             printf("Stack Created\n");
@@ -84,6 +86,46 @@ int main() {
             stack->size = 0;
             printf("Stack destroyed");
             break;
+        case 7:
+            //Escreva um programa que utilize uma pilha para verificar se expressões aritméticas estão com a parentização correta.
+            // O programa deve verificar expressões para ver se cada “abre parênteses” tem um “fecha parênteses” correspondente
+            // e se estão na ordem correta. Por exemplo, a expressão (a+b) está correta, mas a expressão )a+b( não está.
+            printf("verificar se expressões aritméticas estão com a parentização correta\n");
+            char input[1000];
+            printf("Enter the expression: ");
+
+            scanf("%s", input);
+
+            //flush input buffer
+            while ((getchar()) != '\n');
+
+            Stack *parenthesis = Stack_create(1);
+            bool correct = true;
+            for (int i = 0; input[i] != '\0'; i++) {
+                if (input[i] == '(') {
+                    Stack_push(parenthesis, 1);
+                } else if (input[i] == ')') {
+                    if (Stack_is_empty(parenthesis)) {
+                        correct = false;
+                        break;
+                    }
+                    if(Stack_pop(parenthesis, &value)) {
+                        continue;
+                    } else {
+                        correct = false;
+                        break;
+                    }
+                }
+            }
+            if (correct && Stack_is_empty(parenthesis)) {
+                printf("\n");
+                printf("Parentização correta");
+                printf("\n");
+            } else {
+                printf("\n");
+                printf("Parentização incorreta");
+                printf("\n");
+            }
         default:
             printf("Invalid option");
             break;
