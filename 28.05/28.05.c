@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "Stack.c"
+#include <ctype.h>
 
 int main() {
     printf("Dynamic Stack\n");
@@ -98,6 +99,17 @@ int main() {
 
             //flush input buffer
             while ((getchar()) != '\n');
+
+            //(())–( ( )( ) )–()()
+
+            //remove all spaces from input
+            for (int i = 0; input[i] != '\0'; i++) {
+                if (isspace(input[i])) {
+                    for (int j = i; input[j] != '\0'; j++) {
+                        input[j] = input[j + 1];
+                    }
+                }
+            }
 
             Stack *parenthesis = Stack_create(1);
             bool correct = true;
