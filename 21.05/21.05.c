@@ -10,20 +10,18 @@ struct _stack {
 };
 
 int main() {
-    printf("Dynamic Stack");
-
-    printf("--interface--");
+    printf("Dynamic Stack\n");
+    printf("--------------");
+    printf("\n--interface--\n");
 
     START:
-    printf("\n1 - Stack creation \n 2 - push \n 3 - pop \n 4 - read top \n 5 - stack delete \n 6 - print data \n 7 - change size\n");
+    printf("\n 1 - Stack creation \n 2 - push \n 3 - pop \n 4 - read top \n 5 - print data \n 6 - destroy stack\n");
     int op, value;
     scanf("%d", &op);
     switch (op) {
         case 1:
-            printf("stack size: ");
-            unsigned int size;
-            scanf("%d", &size);
-            Stack *stack = Stack_create(size);
+            printf("Stack Created\n");
+            Stack *stack = Stack_create(1);
             break;
         case 2:
             printf("Value: ");
@@ -45,18 +43,26 @@ int main() {
             printf("Top value: %d", stack->data[stack->top]);
             break;
         case 5:
-            free(stack->data);
-            free(stack);
-            break;
-        case 6:
-            printf("what data do you want to print? ");
+            printf("what data do you want to print? \n");
             printf("1 - all \n 2 - size \n 3 - if is empty or full \n");
             int op2;
             scanf("%d", &op2);
             switch (op2) {
                 case 1:
+                    printf("Data:");
+                    //if stack is empty, print a message
+                    if (Stack_is_empty(stack)) {
+                        printf(" Stack is empty");
+                    }
                     for (int i = 0; i <= stack->top; i++) {
                         printf("%d ", stack->data[i]);
+                    }
+                    if (Stack_is_empty(stack)){
+                        printf("\n");
+                        printf("Size: 0");
+                    } else {
+                        printf("\n");
+                        printf("Size: %d", Stack_size(stack));
                     }
                     break;
                 case 2:
@@ -76,13 +82,13 @@ int main() {
                     break;
             }
             break;
-        case 7:
-            printf("New size: ");
-            unsigned int new_size;
-            scanf("%d", &new_size);
-            Stack_change_size(stack, new_size);
-            break;
 
+        case 6:
+            stack->data = NULL;
+            stack->top = -1;
+            stack->size = 0;
+            printf("Stack destroyed");
+            break;
         default:
             printf("Invalid option");
             break;
@@ -112,6 +118,12 @@ bool Stack_pop(Stack *stack, int *value) {
     if (Stack_is_empty(stack)) {
         return false;
     }
+    if (Stack_size(stack) == 1) {
+        *value = stack->data[stack->top];
+        stack->top = -1;
+        return true;
+    }
+    Stack_change_size(stack, stack->size - 1);
     *value = stack->data[stack->top--];
     return true;
 }
@@ -132,7 +144,7 @@ void Stack_change_size(Stack *stack, unsigned int size) {
     stack->data = (int *)realloc(stack->data, size * sizeof(int));
     stack->size = size;
     //remove elements if the new size is smaller than the current size, until the new size is reached
-    while (stack->top >= size) {
+    while (stack->top > size) {
         printf("removing %d\n", stack->data[stack->top]);
         stack->top--;
     }
