@@ -100,7 +100,7 @@ int main() {
             //flush input buffer
             while ((getchar()) != '\n');
 
-            //(())–( ( )( ) )–()()
+            //(())( ( )( ) )()()
 
             //remove all spaces from input
             for (int i = 0; input[i] != '\0'; i++) {
