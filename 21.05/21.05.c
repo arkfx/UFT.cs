@@ -2,6 +2,7 @@
 #include "Stack.h"
 #include <stdlib.h>
 #include <stdbool.h>
+#include "Stack.c"
 
 int main() {
     printf("Dynamic Stack\n");
