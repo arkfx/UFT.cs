@@ -44,7 +44,7 @@ int main() {
             break;
         case 5:
             printf("what data do you want to print? \n");
-            printf("1 - all \n 2 - size \n 3 - if is empty or full \n");
+            printf(" 1 - all \n 2 - size \n 3 - if is empty or full \n");
             int op2;
             scanf("%d", &op2);
             switch (op2) {
