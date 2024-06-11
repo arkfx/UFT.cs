@@ -71,6 +71,11 @@
     "tuple": "c",
     "type_traits": "c",
     "utility": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "*.tcc": "c",
+    "deque": "c",
+    "string": "c",
+    "vector": "c",
+    "string_view": "c"
   }
 }
