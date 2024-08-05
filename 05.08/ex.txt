@@ -1,16 +1,14 @@
 1. Definir os seguintes termos:
 
 Sistema de bancos de dados: Um conjunto de programas inter-relacionados que permitem aos usuários criar, manter e utilizar um banco de dados.
-Banco de dados: Uma coleção organizada de dados inter-relacionados, armazenados de forma integrada e sem redundância significativa, para atender a um ou mais usuários/aplicações.
+Banco de dados: Uma coleção organizada de dados inter-relacionados, armazenados de forma integrada e projetado para atender a um ou mais usuários/aplicações.
 Sistema de gerenciamento de banco de dados (SGBD): Um software que permite aos usuários definir, criar, manter e controlar o acesso a um banco de dados.
 
 2. Quais as vantagens e desvantagens da utilização de um sistema de banco de dados?
 
 Vantagens:
 
-Redução de redundância e inconsistência de dados: Armazenamento único e centralizado dos dados.
 Compartilhamento de dados: Permite que múltiplos usuários acessem e compartilhem os mesmos dados.
-Integridade dos dados: Garante a precisão e a consistência dos dados através de restrições e validações.
 Segurança dos dados: Controla o acesso e protege os dados contra acessos não autorizados.
 Backup e recuperação: Facilita a criação de backups e a recuperação de dados em caso de falhas.
 
@@ -34,4 +32,4 @@ Linguagem de manipulação de dados (DML): Usada para acessar e manipular os dad
 Administrador de banco de dados (DBA): Responsável pelo design, implementação, administração e manutenção do banco de dados.
 Analista de banco de dados: Projeta e modela a estrutura do banco de dados.
 Desenvolvedor de banco de dados: Cria aplicações que interagem com o banco de dados.
-Usuário final: Utiliza aplicações para acessar e manipular os dados
+Usuário final: Utiliza aplicações para acessar e manipular os dados.
