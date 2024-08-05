@@ -3,6 +3,7 @@
 Sistema de bancos de dados: Um conjunto de programas inter-relacionados que permitem aos usuários criar, manter e utilizar um banco de dados.
 Banco de dados: Uma coleção organizada de dados inter-relacionados, armazenados de forma integrada e sem redundância significativa, para atender a um ou mais usuários/aplicações.
 Sistema de gerenciamento de banco de dados (SGBD): Um software que permite aos usuários definir, criar, manter e controlar o acesso a um banco de dados.
+
 2. Quais as vantagens e desvantagens da utilização de um sistema de banco de dados?
 
 Vantagens:
@@ -12,11 +13,13 @@ Compartilhamento de dados: Permite que múltiplos usuários acessem e compartilh
 Integridade dos dados: Garante a precisão e a consistência dos dados através de restrições e validações.
 Segurança dos dados: Controla o acesso e protege os dados contra acessos não autorizados.
 Backup e recuperação: Facilita a criação de backups e a recuperação de dados em caso de falhas.
+
 Desvantagens:
 
 Custo: Implementação e manutenção podem ser caras.
 Complexidade: Requer conhecimento técnico especializado para administração.
 Vulnerabilidade: Um SGBD centralizado pode ser um alvo único para falhas e ataques.
+
 3. Descrever o modelo relacional de dados.
 
 O modelo relacional organiza os dados em tabelas (relações) com linhas (tuplas) e colunas (atributos). Cada tabela representa uma entidade e as relações entre elas são estabelecidas através de chaves.
