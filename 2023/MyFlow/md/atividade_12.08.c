@@ -47,7 +47,7 @@ void programa1(){
     scanf("%d", &idade);
     printf("\n");
 
-    if (idade > 0 && idade <= 110){
+    if (idade > 0 && idade <= 120){
         printf("Idade válida para um ser humano típico\n");
     } else {
         printf("Idade inválida para um ser humano típico\n");
