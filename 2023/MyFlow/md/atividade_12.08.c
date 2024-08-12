@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <strings.h>
 
 /* 8.Crie um programa que armazene o conjunto de todas as idades possíveis para um ser humano em um vetor. 
  Ao receber um número, o programa informa se este número é uma idade válida para um ser humano típico.
@@ -46,7 +47,7 @@ void programa1(){
     scanf("%d", &idade);
     printf("\n");
 
-    if (idade >= 0 && idade <= 120){
+    if (idade > 0 && idade <= 110){
         printf("Idade válida para um ser humano típico\n");
     } else {
         printf("Idade inválida para um ser humano típico\n");
@@ -64,7 +65,7 @@ void programa2(){
     printf("\n");
 
     for (int i = 0; i < 5; i++){
-        if (strcmp(jogador, jogadores[i]) == 0){
+        if (strcasecmp(jogador, jogadores[i]) == 0){
             printf("O jogador %s pertence ao top 5\n", jogador);
             return;
         } 
