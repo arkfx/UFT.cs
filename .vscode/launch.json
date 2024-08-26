@@ -7,7 +7,7 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": false,
+      "externalConsole": true,
       "cwd": "/workspaces/UFT.cs/12.08",
       "program": "/workspaces/UFT.cs/12.08/build/Debug/outDebug",
       "MIMode": "gdb",
