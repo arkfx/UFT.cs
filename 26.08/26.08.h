@@ -32,9 +32,9 @@ void preencherArvore(Arvore *raiz, char *arvore); //CHAR SEPARADO POR ESPAÇO
 //Implementação das funções
 
 Arvore *criarArvore() {
-    Arvore *raiz = (Arvore *) malloc(sizeof(Arvore));
-    raiz->raiz = NULL;
-    return raiz;
+    Arvore *arvore = (Arvore *) malloc(sizeof(Arvore));
+    arvore->raiz = NULL;
+    return arvore;
 }
 
 No *criarNo(int valor, No *pai) {
@@ -46,11 +46,11 @@ No *criarNo(int valor, No *pai) {
     return no;
 }
 
-void inserirNo(Arvore *raiz, int valor) {
-    if (raiz->raiz == NULL) {
-        raiz->raiz = criarNo(valor, NULL);
+void inserirNo(Arvore *arvore, int valor) {
+    if (arvore->raiz == NULL) {
+        arvore->raiz = criarNo(valor, NULL);
     } else {
-        No *atual = raiz->raiz;
+        No *atual = arvore->raiz;
         No *pai = NULL;
         while (atual != NULL) {
             pai = atual;
@@ -92,10 +92,10 @@ void imprimirEmPosOrdem(No *no) {
     }
 }
 
-void preencherArvore(Arvore *raiz, char *arvore) {
-    char *token = strtok(arvore, " ");
+void preencherArvore(Arvore *arvore, char *folhas) {
+    char *token = strtok(folhas, " ");
     while (token != NULL) {
-        inserirNo(raiz, atoi(token));
+        inserirNo(arvore, atoi(token));
         token = strtok(NULL, " ");
     }
 }
