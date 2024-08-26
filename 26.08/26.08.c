@@ -10,12 +10,14 @@
 #include "26.08.h"
 
 int main() {
-    Arvore *raiz = criarArvore();
-    char arvore[] = "12 5 18 2 9 15 19 13 17";
-    preencherArvore(raiz, arvore);
+    Arvore *arvore = criarArvore();
+    char folhas[] = "12 5 18 2 9 15 19 13 17";
+    preencherArvore(arvore, folhas);
     printf("In Order: ");
-    imprimirEmOrdem(raiz);
+    imprimirEmOrdem(arvore->raiz);
     printf("\nPre Order: ");
-    imprimirPreOrdem(raiz);
+    imprimirPreOrdem(arvore->raiz);
+    printf("\nPos Order: ");
+    imprimirEmPosOrdem(arvore->raiz);
     return 0;
 }

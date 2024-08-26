@@ -24,8 +24,8 @@ typedef struct Arvore {
 Arvore *criarArvore();
 No *criarNo(int valor, No *pai);
 void inserirNo(Arvore *raiz, int valor);
-void imprimirPreOrdem(Arvore *raiz);
-void imprimirEmOrdem(Arvore *raiz);
+void imprimirPreOrdem(No *no);
+void imprimirEmOrdem(No *no);
 void preencherArvore(Arvore *raiz, char *arvore); //CHAR SEPARADO POR ESPAÇO
 
 
@@ -68,19 +68,27 @@ void inserirNo(Arvore *raiz, int valor) {
     }
 }
 
-void imprimirPreOrdem(Arvore *raiz) {
-    if (raiz->raiz != NULL) {
-        printf("%d, ", raiz->raiz->valor);
-        imprimirPreOrdem(raiz->raiz->esquerda);
-        imprimirPreOrdem(raiz->raiz->direita);
+void imprimirPreOrdem(No *no) {
+    if (no != NULL) {
+        printf("%d, ", no->valor);
+        imprimirPreOrdem(no->esquerda);
+        imprimirPreOrdem(no->direita);
     }
 }
 
-void imprimirEmOrdem(Arvore *raiz) {
-    if (raiz->raiz != NULL) {
-        imprimirEmOrdem(raiz->raiz->esquerda);
-        printf("%d, ", raiz->raiz->valor);
-        imprimirEmOrdem(raiz->raiz->direita);
+void imprimirEmOrdem(No *no) {
+    if (no != NULL) {
+        imprimirEmOrdem(no->esquerda);
+        printf("%d, ", no->valor);
+        imprimirEmOrdem(no->direita);
+    }
+}
+
+void imprimirEmPosOrdem(No *no) {
+    if(no != NULL) {
+        imprimirEmPosOrdem(no->esquerda);
+        imprimirEmPosOrdem(no->direita);
+        printf("%d, ", no->valor);
     }
 }
 
