@@ -4,13 +4,17 @@
 
 int main() {
     Arvore *arvore = criarArvore();
-    char folhas[] = "12 5 18 2 9 15 19 13 17";
+    char folhas[] = "5 2 3 4 1 6";
     preencherArvore(arvore, folhas);
-    printf("In Order: ");
-    imprimirEmOrdem(arvore->raiz);
+
     printf("\nPre Order: ");
     imprimirPreOrdem(arvore->raiz);
+
+    printf("\nIn Order: ");
+    imprimirEmOrdem(arvore->raiz);
+
     printf("\nPos Order: ");
     imprimirEmPosOrdem(arvore->raiz);
+
     return 0;
 }
