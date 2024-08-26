@@ -11,7 +11,7 @@
 
 int main() {
     Arvore *raiz = criarArvore();
-    char arvore[] = "10 5 15 3 7 12 20";
+    char arvore[] = "12 5 18 2 9 15 19 13 17";
     preencherArvore(raiz, arvore);
     printf("In Order: ");
     imprimirEmOrdem(raiz);
