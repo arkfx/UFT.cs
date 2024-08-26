@@ -1,4 +1,3 @@
-shutdown /s /t 600
  
 */
 pre ordem: 12 15 10 2 1 5 3 10
