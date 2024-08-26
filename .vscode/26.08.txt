@@ -1,0 +1,7 @@
+shutdown /s /t 600
+ 
+*/
+pre ordem: 12 15 10 2 1 5 3 10
+simetrica: 10 15 2 1 12 3 5 10
+pos ordem: 10 1 2 15 3 10 5 12
+*/ 
