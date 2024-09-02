@@ -120,6 +120,17 @@ No* minimo(Arvore *arvore, No *no) {
     return no;
 }
 
+No* buscarNo(No *no, int valor) {
+    if(no == NULL || no->valor == valor) {
+        return no;
+    }
+    if(valor < no->valor) {
+        return buscarNo(no->esquerda, valor);
+    } else {
+        return buscarNo(no->direita, valor);
+    }
+}
+
 void removerNo(Arvore *arvore, No *no) {
     if(no->esquerda == NULL) {
         transplantar(arvore, no, no->direita);
@@ -138,4 +149,6 @@ void removerNo(Arvore *arvore, No *no) {
     }
     free(no);
 }
+
+
 #endif // BINARY_TREE_H

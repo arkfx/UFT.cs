@@ -16,5 +16,18 @@ int main() {
     printf("\nPos Order: ");
     imprimirEmPosOrdem(arvore->raiz);
 
+    printf("\nQual número deseja remover? ");
+    int valor;
+    scanf("%d", &valor);
+
+    No *no = buscarNo(arvore->raiz, valor);
+
+    if(no != NULL) {
+        removerNo(arvore, no);
+        printf("\nNúmero removido com sucesso!\n");
+    } else {
+        printf("\nNúmero não encontrado!\n");
+    }
+
     return 0;
 }
