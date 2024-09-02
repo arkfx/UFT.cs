@@ -100,4 +100,42 @@ void preencherArvore(Arvore *arvore, char *folhas) {
     }
 }
 
+void transplantar(Arvore *arvore, No *u, No *v) {
+    if(u->pai == NULL) {
+        arvore->raiz = v;
+    } else if(u == u->pai->esquerda) {
+        u->pai->esquerda = v;
+    } else {
+        u->pai->direita = v;
+    }
+    if(v != NULL) {
+        v->pai = u->pai;
+    }
+}
+
+No* minimo(Arvore *arvore, No *no) {
+    while(no->esquerda != NULL) {
+        no = no->esquerda;
+    }
+    return no;
+}
+
+void removerNo(Arvore *arvore, No *no) {
+    if(no->esquerda == NULL) {
+        transplantar(arvore, no, no->direita);
+    } else if(no->direita == NULL) {
+        transplantar(arvore, no, no->esquerda);
+    } else {
+        No *y = minimo(arvore, no->direita);
+        if(y->pai != no) {
+            transplantar(arvore, y, y->direita);
+            y->direita = no->direita;
+            y->direita->pai = y;
+        }
+        transplantar(arvore, no, y);
+        y->esquerda = no->esquerda;
+        y->esquerda->pai = y;
+    }
+    free(no);
+}
 #endif // BINARY_TREE_H
