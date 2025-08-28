@@ -1,0 +1,35 @@
+1. Definir os seguintes termos:
+
+Sistema de bancos de dados: Um conjunto de programas inter-relacionados que permitem aos usuários criar, manter e utilizar um banco de dados.
+Banco de dados: Uma coleção organizada de dados inter-relacionados, armazenados de forma integrada e projetado para atender a um ou mais usuários/aplicações.
+Sistema de gerenciamento de banco de dados (SGBD): Um software que permite aos usuários definir, criar, manter e controlar o acesso a um banco de dados.
+
+2. Quais as vantagens e desvantagens da utilização de um sistema de banco de dados?
+
+Vantagens:
+
+Compartilhamento de dados: Permite que múltiplos usuários acessem e compartilhem os mesmos dados.
+Segurança dos dados: Controla o acesso e protege os dados contra acessos não autorizados.
+Backup e recuperação: Facilita a criação de backups e a recuperação de dados em caso de falhas.
+
+Desvantagens:
+
+Custo: Implementação e manutenção podem ser caras.
+Complexidade: Requer conhecimento técnico especializado para administração.
+Vulnerabilidade: Um SGBD centralizado pode ser um alvo único para falhas e ataques.
+
+3. Descrever o modelo relacional de dados.
+
+O modelo relacional organiza os dados em tabelas (relações) com linhas (tuplas) e colunas (atributos). Cada tabela representa uma entidade e as relações entre elas são estabelecidas através de chaves.
+
+4. Definir os seguintes termos:
+
+Linguagem de definição de dados (DDL): Usada para definir a estrutura do banco de dados, como tabelas, colunas e tipos de dados (CREATE, ALTER, DROP).
+Linguagem de manipulação de dados (DML): Usada para acessar e manipular os dados no banco de dados (SELECT, INSERT, UPDATE, DELETE).
+
+5. Quais as ocupações (tarefas de pessoas) relacionadas com a manutenção do funcionamento dos bancos de dados e suas atribuições?
+
+Administrador de banco de dados (DBA): Responsável pelo design, implementação, administração e manutenção do banco de dados.
+Analista de banco de dados: Projeta e modela a estrutura do banco de dados.
+Desenvolvedor de banco de dados: Cria aplicações que interagem com o banco de dados.
+Usuário final: Utiliza aplicações para acessar e manipular os dados.
