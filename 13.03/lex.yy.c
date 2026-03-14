@@ -322,9 +322,6 @@ void yyfree ( void *  );
 #define YY_AT_BOL() (YY_CURRENT_BUFFER_LVALUE->yy_at_bol)
 
 /* Begin user sect3 */
-
-#define yywrap() (/*CONSTCOND*/1)
-#define YY_SKIP_YYWRAP
 typedef flex_uint8_t YY_CHAR;
 
 FILE *yyin = NULL, *yyout = NULL;
@@ -455,8 +452,8 @@ char *yytext;
 #line 1 "lexer.l"
 #line 2 "lexer.l"
 #include <stdio.h>
-#line 459 "lex.yy.c"
-#line 460 "lex.yy.c"
+#line 456 "lex.yy.c"
+#line 457 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -673,10 +670,10 @@ YY_DECL
 		}
 
 	{
-#line 10 "lexer.l"
+#line 8 "lexer.l"
 
 
-#line 680 "lex.yy.c"
+#line 677 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -736,75 +733,75 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 12 "lexer.l"
+#line 10 "lexer.l"
 ;  /* ignora espaços */
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 14 "lexer.l"
+#line 12 "lexer.l"
 { puts("EIGUAL"); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 15 "lexer.l"
+#line 13 "lexer.l"
 { puts("IGUAL"); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 16 "lexer.l"
+#line 14 "lexer.l"
 { puts("MAIS"); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 17 "lexer.l"
+#line 15 "lexer.l"
 { puts("MENOS"); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 18 "lexer.l"
+#line 16 "lexer.l"
 { puts("MUL"); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 19 "lexer.l"
+#line 17 "lexer.l"
 { puts("DIV"); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 20 "lexer.l"
+#line 18 "lexer.l"
 { puts("PARENESQ"); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 21 "lexer.l"
+#line 19 "lexer.l"
 { puts("PARENDIR"); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 22 "lexer.l"
-{ puts("PONTOEV"); }
+#line 20 "lexer.l"
+{ puts("PONTOEV"); puts(""); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 24 "lexer.l"
+#line 22 "lexer.l"
 { printf("INT(%s)\n", yytext); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 25 "lexer.l"
+#line 23 "lexer.l"
 { printf("ID(%s)\n", yytext); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 27 "lexer.l"
+#line 25 "lexer.l"
 { printf("CHAR(%s)\n", yytext); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 29 "lexer.l"
+#line 27 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 808 "lex.yy.c"
+#line 805 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1809,10 +1806,10 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 29 "lexer.l"
+#line 27 "lexer.l"
 
 
 int main(void) {
-    yylex();      /* lê de stdin e aplica as regras */
+    yylex();
     return 0;
 }
